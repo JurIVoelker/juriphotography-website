@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_picturess",
+  "info": {
+    "singularName": "page-pictures",
+    "pluralName": "page-picturess",
+    "displayName": "Page_Pictures",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.image"
+    }
+  }
+}

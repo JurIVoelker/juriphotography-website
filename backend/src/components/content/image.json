@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_content_images",
+  "info": {
+    "displayName": "image",
+    "icon": "picture",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "imageTitle": {
+      "type": "string"
+    },
+    "location": {
+      "type": "component",
+      "repeatable": false,
+      "component": "meta.location"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

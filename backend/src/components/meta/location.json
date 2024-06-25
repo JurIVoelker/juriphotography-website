@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_meta_locations",
+  "info": {
+    "displayName": "location",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    }
+  }
+}
