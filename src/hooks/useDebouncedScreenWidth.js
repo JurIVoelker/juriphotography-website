@@ -1,48 +1,31 @@
 import { useEffect, useState, useRef } from "react";
 import { useDebounce } from "use-debounce";
 
-function useDebouncedScreenWidth(debounceDelay = 1000) {
-  const [currentWidth, setCurrentWidth] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth;
-    }
-    return 0; // Default width for the server-side render
-  });
-  const [isResizing, setResizing] = useState(false);
+function useDebouncedScreenWidth(ref, debounceDelay = 100) {
+  const [currentWidth, setCurrentWidth] = useState(0);
   const debouncedWidth = useDebounce(currentWidth, debounceDelay);
-  const resizeTimeoutRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
+    function handleResize() {
+      if (ref?.current) {
+        setCurrentWidth(ref.current.clientWidth);
+      }
     }
 
-    const handleResize = () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-      setResizing(true);
-      resizeTimeoutRef.current = setTimeout(() => {
-        setResizing(false);
-      }, debounceDelay);
-
-      setCurrentWidth(window.innerWidth);
-    };
-
     window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [ref]);
 
-    // Set the initial width on client side only
-    setCurrentWidth(window.innerWidth);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-    };
-  }, [debounceDelay]);
-
-  return { windowWidth: debouncedWidth[0], isWindowResizing: isResizing };
+  const isMounted = !!(
+    ref?.current?.clientWidth &&
+    debouncedWidth &&
+    debouncedWidth[0]
+  );
+  return {
+    elementWidth: debouncedWidth.length ? debouncedWidth[0] : 0,
+    isMounted: ref?.current?.clientWidth !== undefined,
+  };
 }
 
 export default useDebouncedScreenWidth;
