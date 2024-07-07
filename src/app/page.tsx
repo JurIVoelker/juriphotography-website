@@ -1,9 +1,10 @@
 import React from "react";
-import ImageGallery from "../components/ImageGallery/ImageGallery";
-import { getRandomImages } from "../utils/randomImages";
+import { getStrapiData } from "../utils/apiUtils.js";
+import { ImageGallery } from "next-strapi-image-gallery";
 
 export default async function Home() {
-  const images = await getRandomImages();
+  const images = await getImages();
+
   return (
     <>
       <h1>Hi</h1>
@@ -12,13 +13,8 @@ export default async function Home() {
   );
 }
 
-// async function getPageMeta() {
-//   // const res = await fetch("https://api.unsplash.com/search/photos", { next: { revalidate: 3600 } })
-//   const res = await getImages();
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error('Failed to fetch data')
-//   }
-
-//   return res.json()
-// }
+async function getImages() {
+  const res = await getStrapiData("test-page", { populate: "*" });
+  const { images } = res.data.attributes;
+  return images.data;
+}

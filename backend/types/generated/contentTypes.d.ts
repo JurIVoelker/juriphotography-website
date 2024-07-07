@@ -393,6 +393,36 @@ export interface ApiPagePicturesPagePictures extends Schema.SingleType {
   };
 }
 
+export interface ApiTestPageTestPage extends Schema.SingleType {
+  collectionName: 'test_pages';
+  info: {
+    singularName: 'test-page';
+    pluralName: 'test-pages';
+    displayName: 'test-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::test-page.test-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::test-page.test-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -830,6 +860,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::page-pictures.page-pictures': ApiPagePicturesPagePictures;
+      'api::test-page.test-page': ApiTestPageTestPage;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
