@@ -10,7 +10,7 @@ export default async function Home() {
         <h1>Hi</h1>
         <h2>aweawe</h2>
       </div>
-      <ImageGallery images={images} />
+      {/* <ImageGallery images={images} /> */}
     </>
   );
 }
