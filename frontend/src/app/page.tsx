@@ -4,10 +4,12 @@ import { ImageGallery } from "next-strapi-image-gallery";
 
 export default async function Home() {
   const images = await getImages();
-
   return (
     <>
-      <h1>Hi</h1>
+      <div>
+        <h1>Hi</h1>
+        <h2>aweawe</h2>
+      </div>
       <ImageGallery images={images} />
     </>
   );
