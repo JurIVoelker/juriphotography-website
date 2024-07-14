@@ -1,4 +1,8 @@
-// .imageGallery {
-//   max-width: 1400px;
-//   margin: 0 auto;
-// }
+.heroImage {
+  position: relative;
+  height: 500px;
+  img {
+    object-fit: cover;
+  }
+  width: 100%;
+}
