@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
+    "dev:frontend": "wait-on http://127.0.0.1:1337 && cd frontend && bun run dev",
+    "dev:backend": "cd backend && bun run develop"
   },
   "dependencies": {
     "next": "14.2.4",
@@ -22,10 +21,5 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "wait-on": "^7.2.0"
-  },
-  "scripts": {
-    "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
-    "dev:frontend": "wait-on http://127.0.0.1:1337 && cd frontend && bun run dev",
-    "dev:backend": "cd backend && bun run develop"
   }
 }
