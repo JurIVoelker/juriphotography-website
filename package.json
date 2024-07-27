@@ -2,6 +2,18 @@
   "name": "juriphotography-homepage",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
+    "dev:frontend": "wait-on http://127.0.0.1:1337 && cd frontend && bun run dev",
+    "dev:backend": "cd backend && bun run develop"
+  },
+  "dependencies": {
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-loading-skeleton": "^3.4.0",
+    "use-debounce": "^10.0.1"
+  },
   "workspaces": [
     "frontend",
     "backend"
@@ -9,10 +21,5 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "wait-on": "^7.2.0"
-  },
-  "scripts": {
-    "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
-    "dev:frontend": "wait-on http://127.0.0.1:1337 && cd frontend && bun run dev",
-    "dev:backend": "cd backend && bun run develop"
   }
 }
