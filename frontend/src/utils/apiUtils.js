@@ -10,12 +10,19 @@ export async function getStrapiData(path, options) {
     path.at(0) === "/" ? "" : "/"
   }${path}?${queryString}`;
 
-  console.log(requestString);
   let res;
-  try {
-    res = await fetch(requestString);
-  } catch (error) {
-    throw new Error("fetch failed", error);
-  }
-  return res.json();
+  res = await fetch(requestString);
+  res = await res.json();
+  if (res?.error?.status === 403)
+    throw new Error(`[403] set missing permissions for "${path}" in strapi`);
+  else if (res?.error?.status === 404)
+    throw new Error(`[404] api route "${path}" does not exist`);
+  else if (!res.data)
+    throw new Error(
+      `[${
+        res?.error?.status ? res.error.status : "???"
+      }] an unexpected error occured when trying to fetch "${path}"`
+    );
+
+  return res;
 }

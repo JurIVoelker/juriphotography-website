@@ -1,8 +1,7 @@
 .heroImage {
-  position: relative;
-  height: 500px;
   img {
     object-fit: cover;
+    width: 300px;
+    height: auto;
   }
-  width: 100%;
 }
