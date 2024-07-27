@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  gap: 1rem;
+  .row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    .image {
+      width: 100%;
+      height: auto;
+      border-radius: 0.325rem;
+    }
+  }
+}

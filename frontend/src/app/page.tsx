@@ -3,20 +3,22 @@ import { getStrapiData } from "../utils/apiUtils.js";
 import styles from "./page.module.scss";
 import { Gallery } from "../components/Gallery/Gallery";
 import { StrapiImage } from "../components/StrapiImage/StrapiImage";
+import { sizesFillScreen } from "../utils/strapiUtils.js";
 
 export default async function Home() {
   const { heroImage, images } = await getPageMeta();
   return (
     <>
       <div className={styles.heroImage}>
-        <StrapiImage img={heroImage} />
+        <StrapiImage
+          img={heroImage.data}
+          sizes={sizesFillScreen}
+          priority={true}
+        />
       </div>
       <main>
-        <div>
-          <h1>Hi</h1>
-        </div>
+        <Gallery images={images} className={styles.imageGallery} />
       </main>
-      <Gallery images={[]} className={styles.imageGallery} />
     </>
   );
 }

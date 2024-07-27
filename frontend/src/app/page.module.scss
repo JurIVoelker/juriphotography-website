@@ -1,7 +1,8 @@
 .heroImage {
+  padding: 0;
   img {
     object-fit: cover;
-    width: 300px;
+    width: 100%;
     height: auto;
   }
 }

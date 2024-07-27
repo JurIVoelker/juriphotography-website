@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import styles from "./layout.module.scss";
+import LoadingOverlay from "../components/LoadingOverlay/LoadingOverlay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`${inter.className} ${styles.wrapper}`}>
+        <LoadingOverlay />
         <div className={styles.container}>{children}</div>
       </body>
     </html>
