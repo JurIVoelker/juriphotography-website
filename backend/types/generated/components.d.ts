@@ -1,5 +1,17 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ContentImageText extends Schema.Component {
+  collectionName: 'components_content_image_texts';
+  info: {
+    displayName: 'ImageText';
+    icon: 'picture';
+  };
+  attributes: {
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text: Attribute.RichText & Attribute.Required;
+  };
+}
+
 export interface ContentImage extends Schema.Component {
   collectionName: 'components_content_images';
   info: {
@@ -29,6 +41,7 @@ export interface MetaLocation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'content.image-text': ContentImageText;
       'content.image': ContentImage;
       'meta.location': MetaLocation;
     }

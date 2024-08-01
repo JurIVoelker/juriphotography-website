@@ -1,0 +1,20 @@
+@import "../Theme/theme.scss";
+
+.wrapper {
+  display: flex;
+  gap: 4rem;
+  @include size-s {
+    display: block;
+  }
+  .image {
+    width: 384px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+  .content {
+    width: 100%;
+    color: $font;
+    @include markdown-styles;
+  }
+}

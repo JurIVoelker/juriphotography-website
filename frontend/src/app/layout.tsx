@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import styles from "./layout.module.scss";
 import LoadingOverlay from "../components/LoadingOverlay/LoadingOverlay";
-
-const inter = Inter({ subsets: ["latin"] });
+const font = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body className={`${inter.className} ${styles.wrapper}`}>
+      <body className={`${font.className} ${styles.wrapper}`}>
+        <style global>{`
+          button {
+            font-family: ${font.style.fontFamily};
+          }
+        `}</style>
         <LoadingOverlay />
         <div className={styles.container}>{children}</div>
       </body>

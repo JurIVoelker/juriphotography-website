@@ -43,7 +43,7 @@ export const StrapiImage = ({
 
   if (!img?.attributes)
     throw new Error(
-      "Image does not have attributes. Maybe you forgot to pass the return the image.data as prop"
+      "Image does not have attributes. Maybe you forgot to pass the image.data as prop"
     );
 
   const { width, height } = img?.attributes || {};
@@ -51,7 +51,7 @@ export const StrapiImage = ({
   return (
     <span
       style={{
-        backgroundColor: isLoading ? "#D9D9D9" : "transparent",
+        backgroundColor: isLoading ? "#21222b" : "transparent",
         borderRadius: "0.325rem",
       }}
     >

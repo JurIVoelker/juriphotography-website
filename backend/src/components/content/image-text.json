@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_content_image_texts",
+  "info": {
+    "displayName": "ImageText",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "text": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
