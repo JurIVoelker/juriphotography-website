@@ -12,8 +12,7 @@
     "deploy": "strapi deploy",
     "develop": "strapi develop",
     "start": "strapi start",
-    "strapi": "strapi",
-    "test": ""
+    "strapi": "strapi"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.25.1",
