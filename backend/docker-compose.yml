@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/opt/appa
+      - /opt/appa/node_modules
+    ports:
+      - "1337:1337"
+    command: ["npm", "run", "start"]
