@@ -2,10 +2,6 @@
   "name": "juriphotography-homepage",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
   "scripts": {
     "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
     "dev:backend": "cd backend && bun run develop",
