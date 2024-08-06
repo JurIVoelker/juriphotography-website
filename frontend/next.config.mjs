@@ -20,6 +20,12 @@ const nextConfig = {
         port: "1337",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "cms.jurivoelker.de",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
