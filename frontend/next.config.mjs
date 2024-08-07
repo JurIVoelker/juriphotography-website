@@ -21,7 +21,7 @@ const nextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "cms.jurivoelker.de",
         port: "",
         pathname: "/**",
