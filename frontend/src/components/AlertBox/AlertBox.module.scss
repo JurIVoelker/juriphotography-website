@@ -1,0 +1,27 @@
+@import "../../components/Theme/theme.scss";
+
+.alertBox {
+  width: clamp(200px, 100%, 600px);
+  box-sizing: border-box;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  // Variants
+  &.info {
+    background-color: $primary-dark-transparent;
+  }
+
+  // Other stylings
+  .heading {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    h4 {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+  .content {
+    margin-top: 0.5rem;
+    color: $font-secondary;
+  }
+}
