@@ -17,6 +17,10 @@ jobs:
           cd backend
           npm install
 
+      - name: set app keys env
+        run: |
+          echo "APP_KEYS=toBeModified1,toBeModified2" > backend/.env
+
       - name: deps frontend
         run: |
           cd frontend
