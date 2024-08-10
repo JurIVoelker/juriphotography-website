@@ -16,24 +16,13 @@ jobs:
         run: |
           cd backend
           npm install
-
-      # - name: Create .env file
-      #   run: |
-      #     echo "APP_KEYS=${{ secrets.APP_KEYS }}" > backend/.env
-      #     echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" > backend/.env
-      #     echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> backend/.env
-      #     echo "TRANSFER_TOKEN_SALT=${{ secrets.TRANSFER_TOKEN_SALT }}" >> backend/.env
-      #     echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> backend/.env
-      #   env:
-      #     APP_KEYS: ${{ secrets.APP_KEYS }}
-      #     API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
-      #     ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
-      #     TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
-      #     JWT_SECRET: ${{ secrets.JWT_SECRET }}
-
       - name: set app keys env
         run: |
           echo "APP_KEYS=toBeModified1,toBeModified2" > backend/.env
+          echo "API_TOKEN_SALT=toBeModified" > backend/.env
+          echo "ADMIN_JWT_SECRET=toBeModified" > backend/.env
+          echo "TRANSFER_TOKEN_SALT=toBeModified" > backend/.env
+          echo "JWT_SECRET=toBeModified" > backend/.env
 
       - name: deps frontend
         run: |
