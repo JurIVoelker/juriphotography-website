@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "ci": "cd backend && npm run build && cd .. &&concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"npm run ci:start-backend\" \"npm run ci:build-frontend\"",
+    "ci:build-frontend": "wait-on http://127.0.0.1:1337 && cd frontend && npm run build && npm run ci:stop-backend",
+    "ci:start-backend": "cd backend && npm run start & echo $! > backend.pid",
+    "ci:stop-backend": "kill $(cat backend.pid) || true",
     "dev": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -c \"blue.bold,green.bold\" \"bun run dev:backend\" \"bun run dev:frontend\"",
     "dev:backend": "cd backend && bun run develop",
     "dev:frontend": "wait-on http://127.0.0.1:1337 && cd frontend && bun run dev"
