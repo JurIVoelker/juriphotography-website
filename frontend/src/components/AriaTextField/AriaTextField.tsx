@@ -7,7 +7,7 @@ import {
   TextField,
 } from "react-aria-components";
 
-interface AriaTextFieldProps extends TextFieldProps {
+export interface AriaTextFieldProps extends TextFieldProps {
   label?: string;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);

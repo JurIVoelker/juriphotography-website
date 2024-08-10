@@ -7,12 +7,16 @@ interface AriaButtonProps {
   href?: string;
   variant?: "solid" | "link";
   children?: any;
+  type?: any;
+  className?: string;
 }
 
 const AriaButton = ({
   href,
   variant = "solid",
   children,
+  type,
+  className,
   ...props
 }: AriaButtonProps) => {
   const Component = href ? Link : Button;
@@ -28,7 +32,10 @@ const AriaButton = ({
   return (
     <Component
       href={href}
-      className={`${styles.component} ${variants[variant].className}`}
+      className={`${styles.component} ${variants[variant].className} ${
+        className || ""
+      }`}
+      type={type}
       {...props}
     >
       {children}

@@ -10,3 +10,14 @@
     letter-spacing: calc(1.5rem * -0.01);
   }
 }
+
+@mixin icon-size($size) {
+  @if ($size == "xs") {
+    width: 16px;
+    height: 16px;
+  }
+  @if ($size == "s") {
+    width: 20px;
+    height: 20px;
+  }
+}
