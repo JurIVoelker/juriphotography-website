@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Nav from "../../components/Nav/Nav";
 import styles from "./Login.module.scss";
@@ -8,7 +8,9 @@ const Login = () => {
     <>
       <Nav />
       <main className={styles.content}>
-        <LoginForm className={styles.loginForm} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginForm className={styles.loginForm} />
+        </Suspense>
       </main>
     </>
   );
