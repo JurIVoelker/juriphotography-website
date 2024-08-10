@@ -1,0 +1,16 @@
+.spinner {
+  height: 1.5rem;
+  width: 1.5rem;
+  svg {
+    animation: rotate 0.75s cubic-bezier(0.29, 0.48, 0.75, 0.54) infinite;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

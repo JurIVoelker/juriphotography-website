@@ -2,13 +2,17 @@
 import Link from "next/link";
 import { Button } from "react-aria-components";
 import styles from "./Button.module.scss";
+import { AriaSpinner } from "../AriaSpinner/AriaSpinner";
+import { AriaButtonProps as ButtonProps } from "react-aria";
 
-interface AriaButtonProps {
+interface AriaButtonProps extends ButtonProps {
   href?: string;
   variant?: "solid" | "link";
   children?: any;
   type?: any;
   className?: string;
+  isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
 const AriaButton = ({
@@ -17,6 +21,8 @@ const AriaButton = ({
   children,
   type,
   className,
+  isLoading,
+  isDisabled,
   ...props
 }: AriaButtonProps) => {
   const Component = href ? Link : Button;
@@ -37,8 +43,10 @@ const AriaButton = ({
       }`}
       type={type}
       {...props}
+      isDisabled={isDisabled || isLoading}
     >
-      {children}
+      {!isLoading && children}
+      {isLoading && <AriaSpinner className={styles.spinner} />}
     </Component>
   );
 };

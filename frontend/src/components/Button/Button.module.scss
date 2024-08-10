@@ -3,7 +3,7 @@
 .component {
   cursor: pointer;
   box-sizing: border-box;
-  padding: 0.75rem 1.5rem;
+  padding: 10px 1.5rem;
   font-size: 1em;
   border-radius: 2rem;
   display: flex;
@@ -13,10 +13,8 @@
   @include transition("outline color background");
   outline: 2px solid transparent;
   font-family: inherit;
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
+  line-height: 1.5rem;
+  // Variants
   &.solid {
     border: none;
     background: $primary-dark;
@@ -36,6 +34,15 @@
       color: $font-hovered;
     }
   }
+  // Other styles
+
+  .spinner {
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+
   &[data-focused],
   &:focus {
     outline: 2px solid $primary-light;
