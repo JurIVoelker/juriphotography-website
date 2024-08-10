@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "ci": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -k \"npm run ci:start-backend\" \"npm run ci:build-frontend\"",
+    "ci": "concurrently -p \"[{name}]\" -n \"_backend,frontend\" -k --success last \"npm run ci:start-backend\" \"npm run ci:build-frontend\"",
     "ci:build-frontend": "wait-on http://127.0.0.1:1337 && cd frontend && npm run build",
     "ci:prep": "cd backend && npm run strapi export -- --no-encrypt --file strapi-export-ci",
     "ci:start-backend": "cd backend && npm run start",
