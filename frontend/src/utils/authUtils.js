@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getStrapiUrl } from "./strapiUtils";
+import { getApiUrl } from "./strapiUtils";
 
 export function getAuthHeader(jwt) {
   let _jwt = jwt;
@@ -18,7 +18,7 @@ export async function validateJwt(jwt) {
   const authHeader = getAuthHeader(jwt);
   if (!authHeader) return false;
   try {
-    const res = await axios.get(getStrapiUrl("/users/me"), authHeader);
+    const res = await axios.get(getApiUrl("/users/me"), authHeader);
     if (res.status !== 200) {
       if (jwt) localStorage.setItem("jwt", null);
       return false;

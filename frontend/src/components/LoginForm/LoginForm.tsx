@@ -9,7 +9,7 @@ import styles from "./LoginForm.module.scss";
 import { Form } from "react-aria-components";
 import { FIELD_REQUIRED_ERROR_MESSAGE } from "../../constants/constants";
 import axios from "axios";
-import { getStrapiUrl } from "../../utils/strapiUtils";
+import { getApiUrl } from "../../utils/strapiUtils";
 import {
   INVALID_PASSWORD_OR_IDENTIFIER,
   TOO_MANY_REQUESTS,
@@ -43,7 +43,7 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post(getStrapiUrl("/auth/local"), {
+      .post(getApiUrl("/auth/local"), {
         identifier: email,
         password,
       })
