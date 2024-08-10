@@ -42,8 +42,8 @@ const AriaButton = ({
         className || ""
       }`}
       type={type}
-      {...props}
       isDisabled={isDisabled || isLoading}
+      {...props}
     >
       {!isLoading && children}
       {isLoading && <AriaSpinner className={styles.spinner} />}

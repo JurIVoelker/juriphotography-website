@@ -16,6 +16,7 @@ import {
   UNDEFINED_ERROR,
 } from "../../constants/errorMessages";
 import { validateJwt } from "../../utils/authUtils";
+import { useSearchParams, useRouter } from "next/navigation";
 
 interface LoginFormProps {
   className?: string;
@@ -28,6 +29,8 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
   const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const searchParams = useSearchParams();
+  const { push } = useRouter();
 
   const handleLogout = () => {
     if (localStorage) {
@@ -49,6 +52,12 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
         setErrorMessage("");
         const { jwt } = res.data;
         localStorage.setItem("jwt", jwt);
+        const redirectUrl = searchParams.get("redirect");
+        if (redirectUrl) {
+          push(redirectUrl);
+        } else {
+          window.location.reload();
+        }
       })
       .catch((error) => {
         setLoading(false);
