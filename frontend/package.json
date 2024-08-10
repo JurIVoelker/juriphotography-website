@@ -1,16 +1,17 @@
 {
   "name": "frontend",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.7.2",
     "next": "14.2.4",
     "next-strapi-image-gallery": "1.0.3",
@@ -20,6 +21,8 @@
     "react-aria-components": "^1.1.1",
     "react-dom": "^18",
     "react-loading-skeleton": "^3.4.0",
+    "react-markdown": "^9.0.1",
+    "react-responsive": "^10.0.0",
     "use-debounce": "^10.0.1"
   },
   "devDependencies": {
