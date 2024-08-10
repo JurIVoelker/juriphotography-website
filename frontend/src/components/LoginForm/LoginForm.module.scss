@@ -1,0 +1,11 @@
+@import "../../components/Theme/theme.scss";
+
+.loginForm {
+  margin-top: 4rem;
+  width: clamp(300px, 100%, 400px);
+  height: 100%;
+  min-height: 600px;
+  border: 2px solid $bg-secondary;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+}
