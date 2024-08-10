@@ -9,22 +9,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Build the backend
       - name: deps backend
         run: |
           cd backend
           npm install
 
-      # Step 3: Build the frontend
       - name: deps frontend
         run: |
           cd frontend
           npm install
 
-      - name: build frontend and backend
+      - name: deps root
+        run: |
+          npm install
+
+      - name: import strapi data
+        run: |
+          cd backend
+          npm run ci:import-strapi-data
+
+      - name: build backend
+        run: |
+          cd backend
+          npm run build
+
+      - name: run backend and build frontend
         run: |
           npm run ci
