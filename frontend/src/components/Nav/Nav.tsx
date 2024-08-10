@@ -3,11 +3,16 @@ import styles from "./Nav.module.scss";
 import AriaButton from "../Button/Button";
 
 interface NavProps {
-  pages: { name: string; href: string }[];
+  pages?: { name: string; href: string }[];
   className?: string;
 }
 
-const Nav = ({ pages, className, ...props }: NavProps) => {
+export const defaultPages = [
+  { name: "Fotos", href: "/" },
+  { name: "Login", href: "/login" },
+];
+
+const Nav = ({ pages = defaultPages, className, ...props }: NavProps) => {
   return (
     <div
       className={`${styles.navContainer} ${className ? className : ""}`}
