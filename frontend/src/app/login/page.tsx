@@ -4,7 +4,7 @@ import Nav from "../../components/Nav/Nav";
 const Login = () => {
   return (
     <>
-      <Nav className={styles.nav} />
+      <Nav />
       <main>
         <LoginForm />
       </main>
