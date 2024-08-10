@@ -362,6 +362,39 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiPagePicturesPagePictures extends Schema.SingleType {
+  collectionName: 'page_picturess';
+  info: {
+    singularName: 'page-pictures';
+    pluralName: 'page-picturess';
+    displayName: 'Page_Pictures';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String;
+    images: Attribute.Component<'content.image', true>;
+    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    profile: Attribute.Component<'content.image-text'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-pictures.page-pictures',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-pictures.page-pictures',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -788,99 +821,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiGalleryGallery extends Schema.SingleType {
-  collectionName: 'galleries';
-  info: {
-    singularName: 'gallery';
-    pluralName: 'galleries';
-    displayName: 'Gallery';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::gallery.gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::gallery.gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPagePicturesPagePictures extends Schema.SingleType {
-  collectionName: 'page_picturess';
-  info: {
-    singularName: 'page-pictures';
-    pluralName: 'page-picturess';
-    displayName: 'Page_Pictures';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String;
-    images: Attribute.Component<'content.image', true>;
-    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    profile: Attribute.Component<'content.image-text'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::page-pictures.page-pictures',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::page-pictures.page-pictures',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTestPageTestPage extends Schema.SingleType {
-  collectionName: 'test_pages';
-  info: {
-    singularName: 'test-page';
-    pluralName: 'test-pages';
-    displayName: 'test-page';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::test-page.test-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::test-page.test-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -891,6 +831,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::page-pictures.page-pictures': ApiPagePicturesPagePictures;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -899,9 +840,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::gallery.gallery': ApiGalleryGallery;
-      'api::page-pictures.page-pictures': ApiPagePicturesPagePictures;
-      'api::test-page.test-page': ApiTestPageTestPage;
     }
   }
 }
