@@ -1,0 +1,38 @@
+@import "../Theme/theme.scss";
+
+.textField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  .label {
+    margin-left: 1rem;
+    font-size: 0.75rem;
+  }
+  .input {
+    background-color: $bg-secondary;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0.75rem 1.5rem;
+    &[data-focused] {
+      outline: 2px solid $primary-light;
+    }
+  }
+  .fieldError {
+    margin-top: 2px;
+    margin-left: 1rem;
+    font-size: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: $error-bright;
+  }
+  .icon {
+    @include icon-size("xs");
+    path {
+      fill: $error;
+    }
+  }
+}

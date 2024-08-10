@@ -1,0 +1,28 @@
+@import "../../components/Theme/theme.scss";
+
+.wrapper {
+  box-sizing: border-box;
+  border: 2px solid $bg-secondary;
+  border-radius: 1rem;
+  margin-top: 4rem;
+  width: clamp(300px, 100%, 500px);
+  height: fit-content;
+  padding: 2rem 3rem;
+  .form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .loginButton {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  .errorMessage {
+    margin-top: 1rem;
+    color: $error;
+  }
+}

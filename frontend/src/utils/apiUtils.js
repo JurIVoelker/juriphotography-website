@@ -15,7 +15,9 @@ export async function getStrapiData(path, options) {
   res = await fetch(requestString);
   res = await res.json();
   if (res?.error?.status === 403)
-    throw new Error(`[403] set missing permissions for "${path}" in strapi`);
+    throw new Error(
+      `[403] set missing permissions for "${requestString}" in strapi`
+    );
   else if (res?.error?.status === 404)
     throw new Error(`[404] api route "${path}" does not exist`);
   else if (!res.data)

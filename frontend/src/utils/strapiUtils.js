@@ -1,10 +1,15 @@
+const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
+
 export function getStrapiImage(image) {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
   if (image?.data?.attributes?.url) {
-    return `${baseUrl}${image?.data?.attributes?.url}`;
+    return `${strapiUrl}${image?.data?.attributes?.url}`;
   } else if (image?.attributes?.url) {
-    return `${baseUrl}${image?.attributes?.url}`;
+    return `${strapiUrl}${image?.attributes?.url}`;
   }
+}
+
+export function getApiUrl(path = "") {
+  return strapiUrl + "/api" + (path.at(0) === "/" ? path : `/${path}`);
 }
 
 export const sizesDefault =

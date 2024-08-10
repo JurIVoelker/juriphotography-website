@@ -17,11 +17,6 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`${font.className} ${styles.wrapper}`}>
-        <style global>{`
-          button {
-            font-family: ${font.style.fontFamily};
-          }
-        `}</style>
         <LoadingOverlay />
         <div className={styles.container}>{children}</div>
       </body>

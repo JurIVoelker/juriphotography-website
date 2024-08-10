@@ -20,7 +20,7 @@ export default async function Home() {
         priority={true}
         className={styles.heroImage}
       />
-      <Nav pages={[{ name: "Fotos", href: "/" }]} className={styles.nav} />
+      <Nav className={styles.nav} />
       <main>
         <div className={styles.profileWrapper}>
           <ImageTextSection
