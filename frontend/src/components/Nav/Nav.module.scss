@@ -4,6 +4,7 @@
   background-color: $bg-secondary;
   display: flex;
   justify-content: center;
+  z-index: $z-index-navbar;
   .nav {
     gap: 4rem;
     box-sizing: border-box;
