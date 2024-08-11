@@ -17,11 +17,12 @@ const cmd = `strapi transfer --force --from ${href} --from-token ${token}`;
 exec(cmd, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error executing command: ${error.message || error}`);
-    return;
+    process.exit(1);
   }
   if (stderr) {
     console.error(`stderr: ${stderr}`);
-    return;
+    process.exit(1);
   }
+  console.log(`Transfer completed successfully`);
   console.log(`stdout: ${stdout}`);
 });
