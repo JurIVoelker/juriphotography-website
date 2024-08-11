@@ -11,6 +11,7 @@
     "build": "strapi build",
     "ci:import-strapi-data": "npm run strapi import -- --force -f strapi-export-ci.tar.gz",
     "deploy": "strapi deploy",
+    "deploy:frontend": "node deploy-frontend.js",
     "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi"
@@ -21,6 +22,7 @@
     "@strapi/plugin-users-permissions": "4.25.1",
     "@strapi/strapi": "4.25.1",
     "better-sqlite3": "8.6.0",
+    "dotenv": "^16.4.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
