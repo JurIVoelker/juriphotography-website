@@ -14,7 +14,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi",
-    "transfer": "node transfer.js"
+    "transfer": "node transfer.js",
+    "transfer-and-build": "node transfer.js && strapi build"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.25.1",
