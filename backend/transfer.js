@@ -21,8 +21,8 @@ exec(cmd, (error, stdout, stderr) => {
   }
   if (stderr) {
     console.error(`stderr: ${stderr}`);
-    process.exit(1);
   }
   console.log(`Transfer completed successfully`);
   console.log(`stdout: ${stdout}`);
+  process.exit(0);
 });
