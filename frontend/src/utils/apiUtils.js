@@ -1,6 +1,10 @@
 import qs from "qs";
 
-export async function getStrapiData(path, options) {
+export async function getStrapiData(
+  path,
+  options = {},
+  headers = { next: { revalidate: 300 } }
+) {
   if (!path) throw new Error("path is undefined");
 
   const strapiUrl =
@@ -12,7 +16,7 @@ export async function getStrapiData(path, options) {
   }${path}?${queryString}`;
 
   let res;
-  res = await fetch(requestString);
+  res = await fetch(requestString, headers);
   res = await res.json();
   if (res?.error?.status === 403)
     throw new Error(
