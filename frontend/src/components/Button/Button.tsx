@@ -7,7 +7,7 @@ import { AriaButtonProps as ButtonProps } from "react-aria";
 
 interface AriaButtonProps extends ButtonProps {
   href?: string;
-  variant?: "solid" | "link";
+  variant?: "solid" | "link" | "outline";
   children?: any;
   type?: any;
   className?: string;
@@ -29,6 +29,9 @@ const AriaButton = ({
   const variants = {
     solid: {
       className: styles.solid,
+    },
+    outline: {
+      className: styles.outline,
     },
     link: {
       className: styles.link,

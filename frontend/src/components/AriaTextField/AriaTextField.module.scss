@@ -6,13 +6,13 @@
   flex-direction: column;
   gap: 0.25rem;
   .label {
-    margin-left: 1rem;
+    margin-left: 0.75rem;
     font-size: 0.75rem;
   }
   .input {
     background-color: $bg-secondary;
     border: none;
-    border-radius: 2rem;
+    border-radius: 0.75rem;
     font-size: 1rem;
     font-family: inherit;
     padding: 0.75rem 1.5rem;

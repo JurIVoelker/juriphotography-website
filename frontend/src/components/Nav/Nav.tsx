@@ -9,6 +9,7 @@ interface NavProps {
 
 export const defaultPages = [
   { name: "Fotos", href: "/" },
+  { name: "Dashboard", href: "/dashboard" },
   { name: "Login", href: "/login" },
 ];
 

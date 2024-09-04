@@ -362,6 +362,38 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiAlbumAlbum extends Schema.CollectionType {
+  collectionName: 'albums';
+  info: {
+    singularName: 'album';
+    pluralName: 'albums';
+    displayName: 'Album';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    date: Attribute.Date & Attribute.Required;
+    images: Attribute.Component<'content.image', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::album.album',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::album.album',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePicturesPagePictures extends Schema.SingleType {
   collectionName: 'page_picturess';
   info: {
@@ -831,6 +863,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::album.album': ApiAlbumAlbum;
       'api::page-pictures.page-pictures': ApiPagePicturesPagePictures;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
