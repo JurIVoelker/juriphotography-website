@@ -4,6 +4,8 @@
   width: 100%;
   .label {
     @include input-label;
+    margin-bottom: 0.25rem;
+    display: block;
   }
   .dateInputGroup {
     display: flex;
