@@ -1,0 +1,110 @@
+@import "../Theme/theme.scss";
+
+.datePicker {
+  width: 100%;
+  .label {
+    @include input-label;
+  }
+  .dateInputGroup {
+    display: flex;
+    width: 100%;
+    .button {
+      flex-shrink: 0;
+      flex-grow: 0;
+      height: 44px;
+      width: 44px;
+      padding: 0;
+
+      border-radius: 0 $border-radius $border-radius 0;
+      display: flex;
+      justify-content: center;
+    }
+    .dateInput {
+      background-color: $bg-secondary;
+      display: flex;
+      gap: 0.125rem;
+      align-items: center;
+      flex-grow: 1;
+      border-radius: $border-radius 0 0 $border-radius;
+      padding: 0 1.5rem;
+      > div {
+        &[data-focused] {
+          outline: $outline;
+        }
+      }
+    }
+  }
+}
+
+.calendar {
+  background-color: $bg-secondary;
+  border-radius: $border-radius;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 2px solid $border;
+  width: 346px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 0.75rem 1rem 0.75rem;
+    h2 {
+      margin: 0;
+    }
+    .calendarNav {
+      background-color: transparent;
+      border-radius: $border-radius-tiny;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+  .calendarGrid {
+    thead {
+      tr {
+        height: 32px;
+        th {
+          padding: 0.5rem 0;
+        }
+      }
+    }
+    .calendarCell {
+      padding: 0;
+      box-sizing: border-box;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+
+      @include transition(background-color);
+      border-radius: $border-radius;
+      &[data-hovered] {
+        background-color: $bg-secondary-hovered;
+      }
+      &[data-selected] {
+        background-color: $primary-light;
+        color: $font-dark;
+        font-weight: 700;
+        &[data-focus-visible] {
+          outline: 2px solid $primary-light-hovered;
+        }
+        &[data-hovered] {
+          background-color: $primary-light-hovered;
+        }
+      }
+      &[data-disabled] {
+        color: $font-disabled;
+      }
+      &[data-focused] {
+        outline: none;
+      }
+      &[data-focus-visible] {
+        outline: $outline;
+      }
+    }
+  }
+}

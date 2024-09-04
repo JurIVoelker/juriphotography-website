@@ -13,6 +13,7 @@ interface AriaButtonProps extends ButtonProps {
   className?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
+  slot?: string;
 }
 
 const AriaButton = ({

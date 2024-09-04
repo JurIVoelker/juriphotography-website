@@ -1,3 +1,4 @@
+import AriaDatePicker from "../AriaDatePicker/AriaDatePicker";
 import { AriaTextField } from "../AriaTextField/AriaTextField";
 import AriaButton from "../Button/Button";
 import styles from "./CreateEditAlbum.module.scss";
@@ -8,6 +9,7 @@ export const CreateEditAlbum = () => {
       <div className={styles.albumSidePanel}>
         <div className={styles.inputSection}>
           <AriaTextField label="Albumname" />
+          <AriaDatePicker />
         </div>
         <div className={styles.buttonSection}>
           <AriaButton variant="outline">Verwerfen</AriaButton>

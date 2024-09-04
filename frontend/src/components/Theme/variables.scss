@@ -24,3 +24,9 @@
 
 $border-radius: 0.75rem;
 $border-radius-tiny: 0.325rem;
+$outline: 2px solid $primary-light;
+
+@mixin input-label {
+  margin-left: 0.75rem;
+  font-size: 0.75rem;
+}

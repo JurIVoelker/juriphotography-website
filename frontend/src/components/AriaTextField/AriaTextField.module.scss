@@ -6,8 +6,7 @@
   flex-direction: column;
   gap: 0.25rem;
   .label {
-    margin-left: 0.75rem;
-    font-size: 0.75rem;
+    @include input-label;
   }
   .input {
     background-color: $bg-secondary;
@@ -17,7 +16,7 @@
     font-family: inherit;
     padding: 0.75rem 1.5rem;
     &[data-focused] {
-      outline: 2px solid $primary-light;
+      outline: $outline;
     }
   }
   .fieldError {

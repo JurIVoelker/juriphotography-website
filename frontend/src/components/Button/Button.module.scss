@@ -62,6 +62,6 @@
 
   &[data-focused],
   &:focus {
-    outline: 2px solid $primary-light;
+    outline: $outline;
   }
 }
