@@ -24,7 +24,9 @@ export const CreateEditAlbum = () => {
           <AriaDatePicker />
         </div>
         <div className={styles.buttonSection}>
-          <AriaButton variant="outline">Verwerfen</AriaButton>
+          <AriaButton variant="outline" href="/">
+            Verwerfen
+          </AriaButton>
           <AriaButton>Als Entwurf speichern</AriaButton>
           <AriaButton>Veröffentlichen</AriaButton>
         </div>
