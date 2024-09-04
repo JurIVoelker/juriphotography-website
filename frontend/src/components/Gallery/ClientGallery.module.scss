@@ -1,3 +1,5 @@
+@import "../Theme/theme.scss";
+
 .container {
   display: flex;
   gap: 1rem;
@@ -9,7 +11,7 @@
     .image {
       width: 100%;
       height: auto;
-      border-radius: 0.325rem;
+      border-radius: $border-radius-tiny;
     }
   }
 }

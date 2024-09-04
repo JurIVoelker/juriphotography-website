@@ -3,7 +3,7 @@
 .alertBox {
   width: clamp(200px, 100%, 600px);
   box-sizing: border-box;
-  border-radius: 1rem;
+  border-radius: $border-radius;
   padding: 1.5rem 2rem;
   // Variants
   &.info {

@@ -12,7 +12,7 @@
   .input {
     background-color: $bg-secondary;
     border: none;
-    border-radius: 0.75rem;
+    border-radius: $border-radius;
     font-size: 1rem;
     font-family: inherit;
     padding: 0.75rem 1.5rem;
