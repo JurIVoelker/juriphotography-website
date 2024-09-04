@@ -1,6 +1,6 @@
-import CreateEditAlbum from "../../components/CreateEditAlbum/CreateEditAlbum";
-import Nav from "../../components/Nav/Nav";
-import styles from "./dashboard.module.scss";
+import CreateEditAlbum from "../../../components/CreateEditAlbum/CreateEditAlbum";
+import Nav from "../../../components/Nav/Nav";
+import styles from "./neues-album.module.scss";
 
 const Dashboard = () => {
   return (
