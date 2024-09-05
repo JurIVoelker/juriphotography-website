@@ -4,7 +4,8 @@
   "info": {
     "singularName": "album",
     "pluralName": "albums",
-    "displayName": "Album"
+    "displayName": "Album",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +24,11 @@
       "type": "component",
       "repeatable": true,
       "component": "content.image"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
     }
   }
 }

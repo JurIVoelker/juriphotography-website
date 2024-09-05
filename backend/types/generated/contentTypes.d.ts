@@ -368,6 +368,7 @@ export interface ApiAlbumAlbum extends Schema.CollectionType {
     singularName: 'album';
     pluralName: 'albums';
     displayName: 'Album';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -376,6 +377,7 @@ export interface ApiAlbumAlbum extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     date: Attribute.Date & Attribute.Required;
     images: Attribute.Component<'content.image', true>;
+    slug: Attribute.UID<'api::album.album', 'name'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
