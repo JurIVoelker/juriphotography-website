@@ -170,11 +170,13 @@ export const CreateEditAlbum = () => {
           <AriaDatePicker isRequired />
         </div>
         <div className={styles.buttonSection}>
-          <AriaButton variant="outline" href="/">
+          <AriaButton variant="outline" href="/" isDisabled={isUploading}>
             Verwerfen
           </AriaButton>
           {/* <AriaButton type="submit">Als Entwurf speichern</AriaButton> */}
-          <AriaButton type="submit">Veröffentlichen</AriaButton>
+          <AriaButton type="submit" isDisabled={isUploading}>
+            Veröffentlichen
+          </AriaButton>
         </div>
       </Form>
       <div
