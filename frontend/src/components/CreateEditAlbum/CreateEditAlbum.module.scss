@@ -48,5 +48,16 @@
       gap: 16px;
       row-gap: 24px;
     }
+    .uploadProgress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+      .spinner {
+        width: 96px;
+        height: 96px;
+      }
+    }
   }
 }
