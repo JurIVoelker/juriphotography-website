@@ -1,0 +1,60 @@
+@import "../Theme/theme.scss";
+
+.toast {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem 1.5rem 1.5rem;
+  border-radius: $border-radius;
+
+  min-width: 300px;
+  width: 300px;
+  > div {
+    width: 100%;
+  }
+  .title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+  }
+  .button {
+    position: relative;
+    right: -10px;
+    padding: 10px;
+    background-color: transparent;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &[data-hovered] {
+      background-color: transparent;
+    }
+    &[data-focused] {
+      outline: 2px solid $error;
+    }
+    svg path {
+      fill: $font-dark;
+    }
+  }
+  &.info {
+    border: 2px solid $primary-dark;
+    background-color: $primary-light;
+    div {
+      color: $font-dark;
+    }
+  }
+  &.error {
+    border: 2px solid $error;
+    background-color: $error-bright;
+    div {
+      color: $font-dark;
+    }
+  }
+}

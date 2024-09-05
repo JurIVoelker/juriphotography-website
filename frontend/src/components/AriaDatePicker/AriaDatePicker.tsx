@@ -21,9 +21,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import AriaButton from "../Button/Button";
 
-const AriaDatePicker = () => {
+const AriaDatePicker = ({ ...props }) => {
   return (
-    <DatePicker className={styles.datePicker}>
+    <DatePicker className={styles.datePicker} {...props}>
       <Label className={styles.label}>Datum</Label>
       <Group className={styles.dateInputGroup}>
         <DateInput className={styles.dateInput}>
