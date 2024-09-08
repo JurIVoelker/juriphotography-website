@@ -49,7 +49,7 @@ export const StrapiImage = ({
   const { width, height } = img?.attributes || {};
 
   return (
-    <span
+    <div
       style={{
         backgroundColor: isLoading ? "#21222b" : "transparent",
         borderRadius: "0.325rem",
@@ -67,6 +67,6 @@ export const StrapiImage = ({
         style={{ opacity: isLoading ? 0 : 1, transition: "opacity 250ms" }}
         {...props}
       />
-    </span>
+    </div>
   );
 };

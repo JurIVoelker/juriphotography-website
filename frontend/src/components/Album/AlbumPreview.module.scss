@@ -1,0 +1,19 @@
+@import "../Theme/theme.scss";
+
+.link {
+  .image {
+    border-radius: $border-radius;
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+  }
+  .albumName {
+    text-align: center;
+  }
+  &[data-focused] {
+    outline: none;
+    .image {
+      outline: $outline;
+    }
+  }
+}
