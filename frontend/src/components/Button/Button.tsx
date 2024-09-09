@@ -7,12 +7,13 @@ import { AriaButtonProps as ButtonProps } from "react-aria";
 
 interface AriaButtonProps extends ButtonProps {
   href?: string;
-  variant?: "solid" | "link";
+  variant?: "solid" | "link" | "outline";
   children?: any;
   type?: any;
   className?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
+  slot?: string;
 }
 
 const AriaButton = ({
@@ -30,6 +31,9 @@ const AriaButton = ({
     solid: {
       className: styles.solid,
     },
+    outline: {
+      className: styles.outline,
+    },
     link: {
       className: styles.link,
     },
@@ -42,7 +46,7 @@ const AriaButton = ({
         className || ""
       }`}
       type={type}
-      isDisabled={isDisabled || isLoading}
+      isDisabled={(!href && isDisabled) || isLoading}
       {...props}
     >
       {!isLoading && children}

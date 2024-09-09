@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { sizesDefault, getStrapiImage } from "../../utils/strapiUtils";
 import { useState } from "react";
+import { StrapiImageAttributes } from "../../../types/strapiTypes";
 
 interface StrapiImageProps {
   img: {
@@ -11,26 +12,6 @@ interface StrapiImageProps {
   sizes?: string;
   className?: string;
   priority?: boolean;
-}
-
-interface StrapiImageAttributes {
-  width: number;
-  height: number;
-  url: string;
-  formats: {
-    large: {
-      url: string;
-    };
-    small: {
-      url: string;
-    };
-    thumbnail: {
-      url: string;
-    };
-    medium: {
-      url: string;
-    };
-  };
 }
 
 export const StrapiImage = ({
@@ -49,7 +30,7 @@ export const StrapiImage = ({
   const { width, height } = img?.attributes || {};
 
   return (
-    <span
+    <div
       style={{
         backgroundColor: isLoading ? "#21222b" : "transparent",
         borderRadius: "0.325rem",
@@ -61,12 +42,16 @@ export const StrapiImage = ({
         width={width}
         height={height}
         sizes={sizes}
-        onLoadingComplete={() => {
+        onLoad={() => {
           setLoading(false);
         }}
-        style={{ opacity: isLoading ? 0 : 1, transition: "opacity 250ms" }}
+        style={{
+          opacity: isLoading ? 0 : 1,
+          transition: "opacity 250ms",
+          display: "block",
+        }}
         {...props}
       />
-    </span>
+    </div>
   );
 };

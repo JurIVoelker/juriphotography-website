@@ -3,7 +3,7 @@
 .wrapper {
   box-sizing: border-box;
   border: 2px solid $bg-secondary;
-  border-radius: 1rem;
+  border-radius: $border-radius;
   margin-top: 4rem;
   width: clamp(300px, 100%, 500px);
   height: fit-content;

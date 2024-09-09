@@ -1,0 +1,35 @@
+@import "../Theme/theme.scss";
+
+.link {
+  text-decoration: none;
+  .image {
+    border-radius: $border-radius;
+    width: 144px;
+    height: 144px;
+    object-fit: cover;
+    &.addAlbum {
+      background-color: $bg-secondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+      path {
+        fill: $bg-secondary-hovered;
+      }
+    }
+  }
+  .albumName {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 0.25rem;
+  }
+  &[data-focused] {
+    outline: none;
+    .image {
+      outline: $outline;
+    }
+  }
+}

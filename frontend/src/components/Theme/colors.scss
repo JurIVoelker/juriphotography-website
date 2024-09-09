@@ -1,17 +1,21 @@
 $bg: #202020;
 $bg-secondary: #33343a;
+$bg-secondary-hovered: #44464d;
 $bg-secondary-dark: #2b2c30;
 $bg-secondary-dark-hovered: #232427;
 
 $font: white;
 $font-hovered: rgb(193, 233, 228);
 $font-secondary: #c7c7c7;
+$font-dark: #202020;
+$font-disabled: #8d8d8d;
 
 $border: #5a5a5a;
 
 $primary-dark: rgb(45, 70, 104);
 $primary-dark-hovered: rgb(38, 58, 87);
-$primary-light: rgb(152, 212, 205);
+$primary-light: #98d4cd;
+$primary-light-hovered: #80b4ae;
 
 // Alert Box
 $primary-dark-transparent: rgba(45, 70, 104, 0.2);

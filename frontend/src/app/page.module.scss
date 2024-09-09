@@ -13,13 +13,9 @@
   }
 }
 
-.nav {
-  margin-bottom: 4rem;
-}
 .profileWrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
   .profile {
     padding: 2rem 4rem;
     .buttons {
@@ -31,4 +27,8 @@
       }
     }
   }
+}
+
+.albumTitle {
+  width: 100%;
 }

@@ -5,7 +5,6 @@ import { AriaEmailTextField } from "../AriaTextField/AriaEmailTextField";
 import { AriaTextField } from "../AriaTextField/AriaTextField";
 import AriaButton from "../Button/Button";
 import styles from "./LoginForm.module.scss";
-
 import { Form } from "react-aria-components";
 import { FIELD_REQUIRED_ERROR_MESSAGE } from "../../constants/constants";
 import axios from "axios";
@@ -17,6 +16,7 @@ import {
 } from "../../constants/errorMessages";
 import { validateJwt } from "../../utils/authUtils";
 import { useSearchParams, useRouter } from "next/navigation";
+import { deleteCookie, setCookie } from "../../utils/cookieUtils";
 
 interface LoginFormProps {
   className?: string;
@@ -29,17 +29,18 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
   const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
+
   const searchParams = useSearchParams();
   const { push } = useRouter();
 
   const handleLogout = () => {
-    if (localStorage) {
-      localStorage.setItem("jwt", null);
-      window.location.reload();
-    }
+    // Set the JWT cookie to expire in the past to delete it
+    deleteCookie("jwt");
+    // Reload the page
+    window.location.reload();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     axios
@@ -51,15 +52,11 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
         setLoading(false);
         setErrorMessage("");
         const { jwt } = res.data;
-        localStorage.setItem("jwt", jwt);
-        const redirectUrl = searchParams.get("redirect");
-        if (redirectUrl) {
-          push(redirectUrl);
-        } else {
-          window.location.reload();
-        }
+        setCookie("jwt", jwt);
+        window.location.reload();
       })
       .catch((error) => {
+        console.log(error);
         setLoading(false);
         const errorMessage = error?.response?.data?.error?.message;
         if (!errorMessage) {
@@ -78,8 +75,14 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
     async function isJwtValid() {
       const isValid = await validateJwt();
       setLoggedIn(isValid);
+      const redirectUrl =
+        decodeURIComponent(searchParams.get("redirect")) || "/login";
+      if (redirectUrl !== "null" && redirectUrl) {
+        push(redirectUrl);
+      }
     }
     isJwtValid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFormInvalid = () => {

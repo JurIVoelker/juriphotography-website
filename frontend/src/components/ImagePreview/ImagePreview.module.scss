@@ -1,0 +1,42 @@
+@import "../Theme/theme.scss";
+
+.imagePreview {
+  display: flex; /* Use Flexbox inside grid cells */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  .imageWrapper {
+    width: 96px;
+    height: 96px;
+    background-color: $bg-secondary-dark;
+    border-radius: $border-radius;
+    &.notLoaded {
+      .image {
+        opacity: 0;
+      }
+    }
+    .image {
+      @include transition(opacity);
+      opacity: 1;
+      object-fit: cover;
+      border-radius: $border-radius;
+      cursor: pointer;
+    }
+  }
+  .addImage {
+    width: 6rem;
+    height: 6rem;
+    background-color: $bg;
+    border-radius: $border-radius;
+    border: none;
+    &[data-focused] {
+      outline: $outline;
+    }
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      path {
+        fill: $bg-secondary-dark;
+      }
+    }
+  }
+}
