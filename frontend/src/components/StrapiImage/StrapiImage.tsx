@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { sizesDefault, getStrapiImage } from "../../utils/strapiUtils";
 import { useState } from "react";
+import { StrapiImageAttributes } from "../../../types/strapiTypes";
 
 interface StrapiImageProps {
   img: {
@@ -11,26 +12,6 @@ interface StrapiImageProps {
   sizes?: string;
   className?: string;
   priority?: boolean;
-}
-
-interface StrapiImageAttributes {
-  width: number;
-  height: number;
-  url: string;
-  formats: {
-    large: {
-      url: string;
-    };
-    small: {
-      url: string;
-    };
-    thumbnail: {
-      url: string;
-    };
-    medium: {
-      url: string;
-    };
-  };
 }
 
 export const StrapiImage = ({

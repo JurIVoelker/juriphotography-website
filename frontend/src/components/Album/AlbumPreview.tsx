@@ -4,8 +4,15 @@ import { StrapiImage } from "../StrapiImage/StrapiImage";
 import styles from "./AlbumPreview.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { AlbumType, ImageType } from "../../../types/strapiTypes";
 
-const AlbumPreview = ({
+interface AlbumPreviewProps {
+  albumMeta?: AlbumType;
+  previewImage?: ImageType | null;
+  isAddAlbum?: boolean;
+}
+
+const AlbumPreview: React.FC<AlbumPreviewProps> = ({
   albumMeta,
   previewImage,
   isAddAlbum = false,
