@@ -14,7 +14,7 @@ export function deleteCookie(name, options = {}) {
 }
 
 // Check if a cookie exists
-function hasCookie(name) {
+export function hasCookie(name) {
   return getCookie(name) !== null;
 }
 
