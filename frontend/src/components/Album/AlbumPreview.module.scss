@@ -1,6 +1,7 @@
 @import "../Theme/theme.scss";
 
 .link {
+  text-decoration: none;
   .image {
     border-radius: $border-radius;
     width: 144px;

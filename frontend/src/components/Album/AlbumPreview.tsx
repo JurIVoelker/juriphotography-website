@@ -20,6 +20,22 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = ({
 }) => {
   const { image } = previewImage || {};
   const { name } = albumMeta?.attributes || {};
+  const renderWidth = 144;
+
+  let previewImageSizes = `${renderWidth}px`;
+  if (
+    image?.data?.attributes?.height > 0 &&
+    image?.data?.attributes?.width &&
+    image.data.attributes.width / image.data.attributes.height > 1
+  ) {
+    const scaleFactor = renderWidth / image.data.attributes.width;
+    const scaledWidth = image.data.attributes.width * scaleFactor;
+    const scaledHeight = image.data.attributes.height * scaleFactor;
+    const resizedScaleFactor = renderWidth / scaledHeight;
+    const resizedWidth = resizedScaleFactor * scaledWidth;
+    previewImageSizes = `${resizedWidth}px`;
+  }
+
   return (
     <Link
       {...props}
@@ -29,7 +45,11 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = ({
       {!isAddAlbum && (
         <>
           {image?.data && (
-            <StrapiImage img={image?.data} className={styles.image} />
+            <StrapiImage
+              img={image?.data}
+              className={styles.image}
+              sizes={previewImageSizes}
+            />
           )}
           {!image?.data && (
             <div className={`${styles.image} ${styles.addAlbum}`}>
