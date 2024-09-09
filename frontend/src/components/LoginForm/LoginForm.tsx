@@ -16,7 +16,7 @@ import {
 } from "../../constants/errorMessages";
 import { validateJwt } from "../../utils/authUtils";
 import { useSearchParams, useRouter } from "next/navigation";
-import { setCookie } from "../../utils/cookieUtils";
+import { deleteCookie, setCookie } from "../../utils/cookieUtils";
 
 interface LoginFormProps {
   className?: string;
@@ -35,12 +35,12 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
 
   const handleLogout = () => {
     // Set the JWT cookie to expire in the past to delete it
-    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    deleteCookie("jwt");
     // Reload the page
     window.location.reload();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     axios
@@ -53,13 +53,7 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
         setErrorMessage("");
         const { jwt } = res.data;
         setCookie("jwt", jwt);
-        const redirectUrl =
-          decodeURIComponent(searchParams.get("redirect")) || "/login";
-        if (redirectUrl !== "null" && redirectUrl) {
-          push(redirectUrl);
-        } else {
-          window.location.reload();
-        }
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -81,8 +75,14 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
     async function isJwtValid() {
       const isValid = await validateJwt();
       setLoggedIn(isValid);
+      const redirectUrl =
+        decodeURIComponent(searchParams.get("redirect")) || "/login";
+      if (redirectUrl !== "null" && redirectUrl) {
+        push(redirectUrl);
+      }
     }
     isJwtValid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFormInvalid = () => {
