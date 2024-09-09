@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { StrapiImage } from "../StrapiImage/StrapiImage";
 import styles from "./ClientGallery.module.scss";
 import { useDebounce } from "@uidotdev/usehooks";
+import { sizesGallery } from "../../utils/strapiUtils";
 
 const ClientGallery = ({ rows, breakPoints, ...props }) => {
   const [visibleRowIndex, setVisibleRowIndex] = useState(0);
@@ -47,6 +48,7 @@ const ClientGallery = ({ rows, breakPoints, ...props }) => {
               img={image.image.data}
               key={i}
               className={styles.image}
+              sizes={sizesGallery}
             />
           ))}
         </div>

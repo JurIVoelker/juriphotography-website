@@ -18,6 +18,9 @@ export function getApiUrl(path = "") {
 export const sizesDefault =
   "(max-width: 500px) 245px, (max-width: 750px) 500px, (max-width: 1000px) 750px, 1000w";
 
+export const sizesGallery =
+  "(max-width: 768px) 735px, (max-width: 992px) 473px, (max-width: 1200px) 380px, 290px";
+
 export const sizesFillScreen =
   "(max-width: 768px) 768px, (max-width: 992px) 992px, (max-width: 1200px) 1200px, 1920px";
 
