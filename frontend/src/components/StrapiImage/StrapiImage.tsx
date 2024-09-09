@@ -61,10 +61,14 @@ export const StrapiImage = ({
         width={width}
         height={height}
         sizes={sizes}
-        onLoadingComplete={() => {
+        onLoad={() => {
           setLoading(false);
         }}
-        style={{ opacity: isLoading ? 0 : 1, transition: "opacity 250ms" }}
+        style={{
+          opacity: isLoading ? 0 : 1,
+          transition: "opacity 250ms",
+          display: "block",
+        }}
         {...props}
       />
     </div>

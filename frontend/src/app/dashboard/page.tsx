@@ -28,6 +28,7 @@ const dashboard = async () => {
               />
             );
           })}
+          <AlbumPreview isAddAlbum />
         </div>
       </main>
     </>

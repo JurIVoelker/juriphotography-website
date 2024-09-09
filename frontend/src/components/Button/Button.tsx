@@ -46,7 +46,7 @@ const AriaButton = ({
         className || ""
       }`}
       type={type}
-      isDisabled={isDisabled || isLoading}
+      isDisabled={(!href && isDisabled) || isLoading}
       {...props}
     >
       {!isLoading && children}
