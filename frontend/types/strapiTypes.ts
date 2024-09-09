@@ -42,3 +42,10 @@ export interface StrapiImageAttributes {
     };
   };
 }
+
+export interface StrapiImageType {
+  data: {
+    attributes: StrapiImageAttributes;
+    id: number;
+  };
+}

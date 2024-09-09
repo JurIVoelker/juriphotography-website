@@ -409,7 +409,6 @@ export interface ApiPagePicturesPagePictures extends Schema.SingleType {
   };
   attributes: {
     title: Attribute.String;
-    images: Attribute.Component<'content.image', true>;
     heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     profile: Attribute.Component<'content.image-text'>;
     createdAt: Attribute.DateTime;

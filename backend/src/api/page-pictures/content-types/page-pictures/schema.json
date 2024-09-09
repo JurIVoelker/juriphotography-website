@@ -15,11 +15,6 @@
     "title": {
       "type": "string"
     },
-    "images": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.image"
-    },
     "heroImage": {
       "type": "media",
       "multiple": false,
