@@ -2,21 +2,24 @@
 import { Button, FileTrigger } from "react-aria-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./ImagePreview.module.scss";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ACCEPTED_IMAGE_TYPES } from "../../constants/constants";
 import Image from "next/image";
 import { useState } from "react";
+import AriaButton from "../Button/Button";
 
 interface ImagePreviewProps {
   src?: any;
   isAddImage?: boolean;
   handleAddImage?: any;
+  handleDelete?: any;
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = ({
   src,
   isAddImage,
   handleAddImage,
+  handleDelete,
   ...props
 }) => {
   const [isLoaded, setLoaded] = useState(false);
@@ -28,15 +31,20 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({
             !isLoaded ? styles.notLoaded : ""
           }`}
         >
-          <Image
-            src={src}
-            width={96}
-            height={96}
-            draggable={false}
-            alt="bildvorschau"
-            className={styles.image}
-            onLoadingComplete={() => setLoaded(true)}
-          />
+          <div className={styles.innerWrapper}>
+            <Image
+              src={src}
+              width={96}
+              height={96}
+              draggable={false}
+              alt="bildvorschau"
+              className={styles.image}
+              onLoadingComplete={() => setLoaded(true)}
+            />
+            <AriaButton className={styles.deleteButton} onPress={handleDelete}>
+              <FontAwesomeIcon icon={faXmark} />
+            </AriaButton>
+          </div>
         </div>
       )}
       {isAddImage && (
