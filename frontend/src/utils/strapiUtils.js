@@ -39,7 +39,7 @@ export async function uploadImage(strapiRef, file, refId, field) {
       getAuthHeader()
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
   return imageUpload;
 }

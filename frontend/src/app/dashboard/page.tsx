@@ -1,12 +1,13 @@
 "use server";
 
+import { AlbumType } from "../../../types/strapiTypes";
 import AlbumPreview from "../../components/Album/AlbumPreview";
 import Nav from "../../components/Nav/Nav";
 import { getStrapiData } from "../../utils/apiUtils";
 import styles from "./dashboard.module.scss";
 
 const dashboard = async () => {
-  const albumbs = await getAlbums();
+  const albumbs: AlbumType[] = await getAlbums();
   return (
     <>
       <Nav />
@@ -25,6 +26,7 @@ const dashboard = async () => {
                 albumMeta={album}
                 key={album.id}
                 previewImage={previewImage}
+                href={`/dashboard/bearbeiten/${album.attributes.slug}`}
               />
             );
           })}

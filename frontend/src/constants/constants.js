@@ -4,3 +4,5 @@ export const FIELD_REQUIRED_ERROR_MESSAGE =
 export const ACCEPTED_IMAGE_TYPES = ["image/png", "image/jpeg"];
 export const ALBUM_CREATED_TOAST_MESSAGE =
   "Dein Album wurde erfolgreich erstellt";
+export const ALBUM_EDITED_TOAST_MESSAGE =
+  "Dein Album wurde erfolgreich bearbeitet";

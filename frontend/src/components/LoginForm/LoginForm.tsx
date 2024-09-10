@@ -56,7 +56,7 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
         window.location.reload();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setLoading(false);
         const errorMessage = error?.response?.data?.error?.message;
         if (!errorMessage) {

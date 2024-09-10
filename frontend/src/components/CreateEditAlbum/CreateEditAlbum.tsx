@@ -18,13 +18,26 @@ import {
   UNEXPECTED_ERROR_WHEN_CREATING_ALBUM,
   UNEXPECTED_ERROR_WHEN_UPLOADING_IMAGES,
 } from "../../constants/errorMessages";
-import { ALBUM_CREATED_TOAST_MESSAGE } from "../../constants/constants";
+import {
+  ALBUM_CREATED_TOAST_MESSAGE,
+  ALBUM_EDITED_TOAST_MESSAGE,
+} from "../../constants/constants";
 import { useRouter } from "next/navigation";
 import { getStrapiData } from "../../utils/apiUtils";
 import { AriaSpinner } from "../AriaSpinner/AriaSpinner";
+import { AlbumType } from "../../../types/strapiTypes";
+import { parseDate } from "@internationalized/date";
 
-export const CreateEditAlbum = () => {
-  const [images, setImages] = useState([]);
+interface CreateEditAlbumProps {
+  album: AlbumType;
+  isEdit?: boolean;
+}
+
+export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
+  album,
+  isEdit,
+}) => {
+  const [images, setImages] = useState(album?.attributes?.images || []);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setUploading] = useState(false);
   const { push } = useRouter();
@@ -34,6 +47,7 @@ export const CreateEditAlbum = () => {
       // @ts-ignore
       ({ file, url: URL.createObjectURL(file) })
     );
+    // @ts-ignore
     setImages((images) => [...images, ...newUrls]);
   };
 
@@ -96,8 +110,9 @@ export const CreateEditAlbum = () => {
     return !slugs.includes(slug);
   };
 
-  const createAlbum = async (name, date, slug, imageIds) => {
+  const createAlbum = async (name, date, slug) => {
     try {
+      const imageIds = await uploadImages(images);
       await axios.post(
         getApiUrl("/albums"),
         {
@@ -115,6 +130,49 @@ export const CreateEditAlbum = () => {
     } catch (error) {
       handleAlbumCreationError(error, name);
       throw new Error("Album creation failed");
+    }
+  };
+
+  const editAlbum = async (name, date) => {
+    try {
+      const imageUploads = [];
+
+      images.forEach((image, i) => {
+        if (!image?.image) {
+          imageUploads.push({ index: i, image });
+        }
+      });
+
+      const uploadedImagesIds = await uploadImages(
+        imageUploads.map((image) => image.image)
+      );
+
+      const imageComponentBody = [];
+      images.forEach((image, i) => {
+        if (image?.image) {
+          imageComponentBody.push({ image: image.image.data.id });
+        } else {
+          const uploadedImageIndex = imageUploads.findIndex(
+            (image) => image.index === i
+          );
+          const id = uploadedImagesIds[uploadedImageIndex];
+          imageComponentBody.push({ image: id });
+        }
+      });
+
+      await axios.put(
+        getApiUrl(`/albums/${album.id}`),
+        {
+          data: {
+            name,
+            date,
+            images: imageComponentBody,
+          },
+        },
+        getAuthHeader()
+      );
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -137,24 +195,29 @@ export const CreateEditAlbum = () => {
       return;
     }
 
-    // Validate if slug is already used by someone else
-    const slugAvailable = await isSlugAvailable(slug);
-    if (!slugAvailable) {
-      toastQueue.add({
-        text: NAME_OF_ALBUM_MUST_BE_UNIQUE(name),
-        variant: "error",
-      });
-      setUploading(false);
-      return;
+    if (!isEdit) {
+      // Validate if slug is already used by someone else
+      const slugAvailable = await isSlugAvailable(slug);
+      if (!slugAvailable) {
+        toastQueue.add({
+          text: NAME_OF_ALBUM_MUST_BE_UNIQUE(name),
+          variant: "error",
+        });
+        setUploading(false);
+        return;
+      }
     }
 
     try {
-      // Upload images and create album
-      const imageIds = await uploadImages(images);
-      await createAlbum(name, date, slug, imageIds);
+      if (!isEdit) {
+        // Upload images and create album
+        await createAlbum(name, date, slug);
+        toastQueue.add({ text: ALBUM_CREATED_TOAST_MESSAGE });
+      } else {
+        await editAlbum(name, date);
+        toastQueue.add({ text: ALBUM_EDITED_TOAST_MESSAGE });
+      }
 
-      // Success toast and redirect
-      toastQueue.add({ text: ALBUM_CREATED_TOAST_MESSAGE });
       push("/dashboard");
     } catch (error) {
       console.error("Error during album creation:", error);
@@ -170,8 +233,15 @@ export const CreateEditAlbum = () => {
     <div className={styles.albumWrapper}>
       <Form className={styles.albumSidePanel} onSubmit={handleSubmit}>
         <div className={styles.inputSection}>
-          <AriaTextField label="Albumname" isRequired />
-          <AriaDatePicker isRequired />
+          <AriaTextField
+            label="Albumname"
+            isRequired
+            defaultValue={album.attributes.name}
+          />
+          <AriaDatePicker
+            isRequired
+            defaultValue={parseDate(album.attributes.date)}
+          />
         </div>
         <div className={styles.buttonSection}>
           <AriaButton variant="outline" href="/" isDisabled={isUploading}>
@@ -193,7 +263,9 @@ export const CreateEditAlbum = () => {
             {images.map((img, i) => (
               <ImagePreview
                 key={i}
-                src={img.url}
+                // @ts-ignore
+                src={img?.url}
+                strapiImage={img?.image ? img.image : null}
                 handleDelete={() => handleDeleteImage(i)}
               />
             ))}
@@ -209,7 +281,11 @@ export const CreateEditAlbum = () => {
               customStrokeWidth={2}
               isBackgroundVisible
             />
-            <p>Album wird hochgeladen ({uploadProgress}%)...</p>
+
+            {!isEdit && <p>Album wird hochgeladen ({uploadProgress}%)...</p>}
+            {isEdit && (
+              <p>Änderungen werden gespeichert ({uploadProgress}%)...</p>
+            )}
           </div>
         )}
       </div>

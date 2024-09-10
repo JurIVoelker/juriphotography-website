@@ -29,6 +29,16 @@
     }
     .innerWrapper {
       position: relative;
+      .strapiImage {
+        border-radius: $border-radius;
+        background-color: $bg;
+        img {
+          border-radius: $border-radius;
+          width: 96px;
+          height: 96px;
+          object-fit: cover;
+        }
+      }
       .deleteButton {
         @include transition(opacity);
         opacity: 0;

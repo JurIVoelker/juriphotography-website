@@ -10,12 +10,14 @@ interface AlbumPreviewProps {
   albumMeta?: AlbumType;
   previewImage?: ImageType | null;
   isAddAlbum?: boolean;
+  href?: string;
 }
 
 const AlbumPreview: React.FC<AlbumPreviewProps> = ({
   albumMeta,
   previewImage,
   isAddAlbum = false,
+  href,
   ...props
 }) => {
   const { image } = previewImage || {};
@@ -40,7 +42,7 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = ({
     <Link
       {...props}
       className={styles.link}
-      href={isAddAlbum ? "/dashboard/neues-album" : ""}
+      href={href ? href : isAddAlbum ? "/dashboard/neues-album" : ""}
     >
       {!isAddAlbum && (
         <>
