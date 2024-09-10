@@ -1,17 +1,19 @@
 @import "../components/Theme/theme.scss";
 
 .heroImage {
+  position: relative;
+  max-width: 1920px;
+  overflow: visible !important;
   img {
     width: 100vw;
     height: 500px;
     object-fit: cover;
-  }
-  max-width: 1920px;
-  @include size-m {
-    height: 400px;
-  }
-  @include size-s {
-    height: 300px;
+    @include size-m {
+      height: 400px;
+    }
+    @include size-s {
+      height: 300px;
+    }
   }
 }
 
