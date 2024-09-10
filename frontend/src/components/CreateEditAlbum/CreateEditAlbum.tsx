@@ -34,7 +34,7 @@ export const CreateEditAlbum = () => {
       // @ts-ignore
       ({ file, url: URL.createObjectURL(file) })
     );
-    setImages(newUrls);
+    setImages((images) => [...images, ...newUrls]);
   };
 
   const handleAlbumCreationError = (error, name) => {
