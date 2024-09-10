@@ -34,7 +34,7 @@ export const CreateEditAlbum = () => {
       // @ts-ignore
       ({ file, url: URL.createObjectURL(file) })
     );
-    setImages(newUrls);
+    setImages((images) => [...images, ...newUrls]);
   };
 
   const handleAlbumCreationError = (error, name) => {
@@ -162,6 +162,10 @@ export const CreateEditAlbum = () => {
     setUploading(false);
   };
 
+  const handleDeleteImage = async (i) => {
+    setImages((images) => images.filter((_, arrayIndex) => arrayIndex !== i));
+  };
+
   return (
     <div className={styles.albumWrapper}>
       <Form className={styles.albumSidePanel} onSubmit={handleSubmit}>
@@ -187,7 +191,11 @@ export const CreateEditAlbum = () => {
         {!isUploading && (
           <div className={styles.imageSelection}>
             {images.map((img, i) => (
-              <ImagePreview key={i} src={img.url} />
+              <ImagePreview
+                key={i}
+                src={img.url}
+                handleDelete={() => handleDeleteImage(i)}
+              />
             ))}
             <ImagePreview isAddImage handleAddImage={handleAddImage} />
           </div>
