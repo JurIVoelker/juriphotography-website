@@ -29,7 +29,7 @@ import { AlbumType } from "../../../types/strapiTypes";
 import { parseDate } from "@internationalized/date";
 
 interface CreateEditAlbumProps {
-  album: AlbumType;
+  album?: AlbumType;
   isEdit?: boolean;
 }
 
