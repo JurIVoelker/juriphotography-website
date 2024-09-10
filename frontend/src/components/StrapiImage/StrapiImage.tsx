@@ -3,6 +3,7 @@ import Image from "next/image";
 import { sizesDefault, getStrapiImage } from "../../utils/strapiUtils";
 import { useState } from "react";
 import { StrapiImageAttributes } from "../../../types/strapiTypes";
+import styles from "./StrapiImage.module.scss";
 
 interface StrapiImageProps {
   img: {
@@ -18,6 +19,7 @@ export const StrapiImage = ({
   img,
   alt = "bild",
   sizes = sizesDefault,
+  className,
   ...props
 }: StrapiImageProps) => {
   const [isLoading, setLoading] = useState(true);
@@ -31,10 +33,9 @@ export const StrapiImage = ({
 
   return (
     <div
-      style={{
-        backgroundColor: isLoading ? "#21222b" : "transparent",
-        borderRadius: "0.325rem",
-      }}
+      className={`${styles.imageContainer} ${
+        isLoading ? "" : styles.isLoaded
+      } ${className || ""}`}
     >
       <Image
         src={getStrapiImage(img)}
@@ -45,11 +46,7 @@ export const StrapiImage = ({
         onLoad={() => {
           setLoading(false);
         }}
-        style={{
-          opacity: isLoading ? 0 : 1,
-          transition: "opacity 250ms",
-          display: "block",
-        }}
+        className={`${styles.image} ${isLoading ? "" : styles.isLoaded}`}
         {...props}
       />
     </div>

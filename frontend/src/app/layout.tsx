@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`${font.className} ${styles.wrapper}`}>
-        <LoadingOverlay />
+        {/* <LoadingOverlay /> */}
         <GlobalToastRegion />
         <div className={styles.container}>{children}</div>
       </body>

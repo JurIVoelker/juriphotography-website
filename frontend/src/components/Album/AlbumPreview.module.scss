@@ -3,10 +3,12 @@
 .link {
   text-decoration: none;
   .image {
-    border-radius: $border-radius;
-    width: 144px;
-    height: 144px;
-    object-fit: cover;
+    img {
+      border-radius: $border-radius;
+      width: 144px;
+      height: 144px;
+      object-fit: cover;
+    }
     &.addAlbum {
       background-color: $bg-secondary;
       display: flex;

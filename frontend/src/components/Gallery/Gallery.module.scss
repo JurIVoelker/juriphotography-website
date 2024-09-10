@@ -6,8 +6,10 @@
   gap: 1rem;
   .image {
     margin-bottom: 1rem;
-    width: 100%;
-    height: auto;
-    border-radius: $border-radius-tiny;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius-tiny;
+    }
   }
 }

@@ -7,10 +7,12 @@
     display: block;
   }
   .image {
-    width: 384px;
-    height: 480px;
-    object-fit: cover;
-    border-radius: $border-radius;
+    img {
+      width: 384px;
+      height: 480px;
+      object-fit: cover;
+      border-radius: $border-radius;
+    }
   }
   .content {
     width: 100%;

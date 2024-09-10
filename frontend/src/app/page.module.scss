@@ -1,9 +1,11 @@
 @import "../components/Theme/theme.scss";
 
 .heroImage {
-  object-fit: cover;
-  width: 100vw;
-  height: 500px;
+  img {
+    width: 100vw;
+    height: 500px;
+    object-fit: cover;
+  }
   max-width: 1920px;
   @include size-m {
     height: 400px;
