@@ -4,15 +4,17 @@
   box-sizing: border-box;
   border: 2px solid $bg-secondary;
   border-radius: $border-radius;
-  margin-top: 4rem;
   width: clamp(300px, 100%, 500px);
   height: fit-content;
-  padding: 2rem 3rem;
+  padding: 1rem 1.5rem;
+  margin-top: -2rem;
+  h2 {
+    margin: 0.5rem 0 1rem;
+  }
   @include size-s {
-    padding: 1rem 1.5rem;
-    h2 {
-      margin: 0.5rem 0 1rem;
-    }
+    position: absolute;
+    top: 16rem;
+    max-width: calc(100vw - 2rem);
   }
   .form {
     margin-top: 2rem;
