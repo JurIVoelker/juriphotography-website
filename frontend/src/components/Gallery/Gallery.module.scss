@@ -1,0 +1,13 @@
+@import "../Theme/theme.scss";
+
+.gallery {
+  column-width: 288px;
+  column-count: 4;
+  gap: 1rem;
+  .image {
+    margin-bottom: 1rem;
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius-tiny;
+  }
+}
