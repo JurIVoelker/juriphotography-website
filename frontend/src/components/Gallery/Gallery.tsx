@@ -5,11 +5,16 @@ import styles from "./Gallery.module.scss";
 
 interface GalleryProps {
   images: ImageType[];
+  className?: string;
 }
 
-export const Gallery: React.FC<GalleryProps> = ({ images, ...props }) => {
+export const Gallery: React.FC<GalleryProps> = ({
+  images,
+  className,
+  ...props
+}) => {
   return (
-    <div className={styles.gallery}>
+    <div className={`${styles.gallery} ${className || ""}`} {...props}>
       {images.map((image, i) => (
         <StrapiImage
           img={image.image.data}
