@@ -12,10 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: deps backend
         run: |
           cd backend
-          npm install
+          bun install
 
       - name: set backend env
         run: |
@@ -34,22 +39,22 @@ jobs:
       - name: deps frontend
         run: |
           cd frontend
-          npm install
+          bun install
 
       - name: deps root
         run: |
-          npm install
+          bun install
 
       - name: import strapi data
         run: |
           cd backend
-          npm run ci:import-strapi-data
+          bun ci:import-strapi-data
 
       - name: build backend
         run: |
           cd backend
-          npm run build
+          bun run build
 
       - name: run backend and build frontend
         run: |
-          npm run ci
+          bun run ci
