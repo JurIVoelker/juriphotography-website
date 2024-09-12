@@ -236,11 +236,11 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
           <AriaTextField
             label="Albumname"
             isRequired
-            defaultValue={album.attributes.name}
+            defaultValue={album?.attributes?.name || ""}
           />
           <AriaDatePicker
             isRequired
-            defaultValue={parseDate(album.attributes.date)}
+            defaultValue={album ? parseDate(album.attributes.date) : ""}
           />
         </div>
         <div className={styles.buttonSection}>
