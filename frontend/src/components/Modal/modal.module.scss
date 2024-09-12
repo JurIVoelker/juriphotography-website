@@ -1,0 +1,71 @@
+@import "../Theme/theme.scss";
+
+.modalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &[data-entering] {
+    animation: fadeBackground 150ms forwards;
+    .modal {
+      animation: modal-zoom 150ms forwards;
+    }
+  }
+
+  &[data-exiting] {
+    animation: fadeBackground 150ms reverse;
+    .modal {
+      animation: modal-zoom 150ms ease-in reverse;
+    }
+  }
+  .modal {
+    background-color: $bg;
+    padding: 2rem;
+    border-radius: $border-radius;
+    border: 2px solid $border;
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    .title {
+      margin: 0 0 0.5rem 0;
+    }
+    p {
+      margin: 0 0 1rem 0;
+    }
+    .dialog {
+      outline: none;
+    }
+  }
+}
+
+@keyframes fadeBackground {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes modal-zoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

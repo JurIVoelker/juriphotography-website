@@ -5,7 +5,7 @@ import { AriaTextField } from "../AriaTextField/AriaTextField";
 import AriaButton from "../Button/Button";
 import styles from "./CreateEditAlbum.module.scss";
 import ImagePreview from "../ImagePreview/ImagePreview";
-import { Form } from "react-aria-components";
+import { DialogTrigger, Form } from "react-aria-components";
 import axios from "axios";
 import { getApiUrl } from "../../utils/strapiUtils";
 import { getAuthHeader } from "../../utils/authUtils";
@@ -27,6 +27,7 @@ import { getStrapiData } from "../../utils/apiUtils";
 import { AriaSpinner } from "../AriaSpinner/AriaSpinner";
 import { AlbumType } from "../../../types/strapiTypes";
 import { parseDate } from "@internationalized/date";
+import DeleteAlbumModal from "../Modal/DeleteAlbumModal";
 
 interface CreateEditAlbumProps {
   album?: AlbumType;
@@ -67,7 +68,6 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
     }
   };
 
-  // Upload images to the server
   const uploadImages = async (images) => {
     if (!images.length) return;
     const formData = new FormData();
@@ -247,7 +247,14 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
           <AriaButton variant="outline" href="/" isDisabled={isUploading}>
             Verwerfen
           </AriaButton>
-          {/* <AriaButton type="submit">Als Entwurf speichern</AriaButton> */}
+          {isEdit && (
+            <DialogTrigger>
+              <DeleteAlbumModal album={album} />
+              <AriaButton variant="outline" isDisabled={isUploading}>
+                Album löschen
+              </AriaButton>
+            </DialogTrigger>
+          )}
           <AriaButton type="submit" isDisabled={isUploading}>
             Veröffentlichen
           </AriaButton>
