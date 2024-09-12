@@ -1,5 +1,7 @@
 @import "../Theme/theme.scss";
 .navContainer {
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: $bg-secondary;
   display: flex;
