@@ -7,15 +7,16 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    environment: ci
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: deps backend
-        run: |
-          cd backend
-          npm install
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - name: set backend env
         run: |
@@ -27,6 +28,11 @@ jobs:
           echo "NEXT_PUBLIC_URL=http://127.0.0.1:3000" >> backend/.env
           echo "REVALIDATION_SECRET=toBeModified" >> backend/.env
 
+      - name: deps backend
+        run: |
+          cd backend
+          bun install
+
       - name: set frontend env
         run: |
           echo "REVALIDATION_SECRET=toBeModified" > frontend/.env
@@ -34,22 +40,22 @@ jobs:
       - name: deps frontend
         run: |
           cd frontend
-          npm install
+          bun install
 
       - name: deps root
         run: |
-          npm install
+          bun install
 
       - name: import strapi data
         run: |
           cd backend
-          npm run ci:import-strapi-data
+          bun ci:import-strapi-data
 
       - name: build backend
         run: |
           cd backend
-          npm run build
+          bun run build
 
       - name: run backend and build frontend
         run: |
-          npm run ci
+          bun run ci
