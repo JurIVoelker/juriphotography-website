@@ -1,0 +1,22 @@
+@import "../components/Theme/theme.scss";
+.main {
+  height: calc(100% - 10rem);
+  margin-top: 0 !important;
+  .div {
+    background-color: $bg-secondary;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: $border-radius;
+    gap: 1rem;
+    h1 {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
