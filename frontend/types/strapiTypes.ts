@@ -7,6 +7,7 @@ export interface AlbumType {
   publishedAt: string;
   slug: string;
   updatedAt: string;
+  documentId: "string";
 }
 
 export interface ImageType {
@@ -17,6 +18,7 @@ export interface ImageType {
 }
 
 export interface StrapiImageAttributes {
+  id: number;
   width: number;
   height: number;
   url: string;

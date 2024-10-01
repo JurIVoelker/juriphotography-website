@@ -7,7 +7,10 @@ import { ACCEPTED_IMAGE_TYPES } from "../../constants/constants";
 import Image from "next/image";
 import { useState } from "react";
 import AriaButton from "../Button/Button";
-import { StrapiImageType } from "../../../types/strapiTypes";
+import {
+  StrapiImageAttributes,
+  StrapiImageType,
+} from "../../../types/strapiTypes";
 import { StrapiImage } from "../StrapiImage/StrapiImage";
 
 interface ImagePreviewProps {
@@ -15,7 +18,7 @@ interface ImagePreviewProps {
   isAddImage?: boolean;
   handleAddImage?: any;
   handleDelete?: any;
-  strapiImage?: StrapiImageType;
+  strapiImage?: StrapiImageAttributes;
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = ({
@@ -48,10 +51,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({
               />
             )}
             {strapiImage && (
-              <StrapiImage
-                img={strapiImage.data}
-                className={styles.strapiImage}
-              />
+              <StrapiImage img={strapiImage} className={styles.strapiImage} />
             )}
             <AriaButton className={styles.deleteButton} onPress={handleDelete}>
               <FontAwesomeIcon icon={faXmark} />

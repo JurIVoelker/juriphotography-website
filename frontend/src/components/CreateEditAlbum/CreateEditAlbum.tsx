@@ -38,7 +38,7 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
   album,
   isEdit,
 }) => {
-  const [images, setImages] = useState(album?.attributes?.images || []);
+  const [images, setImages] = useState(album?.images || []);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setUploading] = useState(false);
   const { push } = useRouter();
@@ -106,7 +106,7 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
         limit: 10000,
       },
     });
-    const slugs = allAlbums.data.map((album) => album.attributes.slug);
+    const slugs = allAlbums.data.map((album) => album.slug);
     return !slugs.includes(slug);
   };
 
@@ -150,7 +150,7 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
       const imageComponentBody = [];
       images.forEach((image, i) => {
         if (image?.image) {
-          imageComponentBody.push({ image: image.image.data.id });
+          imageComponentBody.push({ image: image.image.id });
         } else {
           const uploadedImageIndex = imageUploads.findIndex(
             (image) => image.index === i
@@ -161,7 +161,7 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
       });
 
       await axios.put(
-        getApiUrl(`/albums/${album.id}`),
+        getApiUrl(`/albums/${album.documentId}`),
         {
           data: {
             name,
@@ -236,11 +236,11 @@ export const CreateEditAlbum: React.FC<CreateEditAlbumProps> = ({
           <AriaTextField
             label="Albumname"
             isRequired
-            defaultValue={album?.attributes?.name || ""}
+            defaultValue={album?.name || ""}
           />
           <AriaDatePicker
             isRequired
-            defaultValue={album ? parseDate(album.attributes.date) : ""}
+            defaultValue={album ? parseDate(album.date) : ""}
           />
         </div>
         <div className={styles.buttonSection}>
