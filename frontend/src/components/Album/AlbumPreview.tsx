@@ -21,18 +21,14 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = ({
   ...props
 }) => {
   const { image } = previewImage || {};
-  const { name } = albumMeta?.attributes || {};
+  const { name } = albumMeta || {};
   const renderWidth = 144;
 
   let previewImageSizes = `${renderWidth}px`;
-  if (
-    image?.data?.attributes?.height > 0 &&
-    image?.data?.attributes?.width &&
-    image.data.attributes.width / image.data.attributes.height > 1
-  ) {
-    const scaleFactor = renderWidth / image.data.attributes.width;
-    const scaledWidth = image.data.attributes.width * scaleFactor;
-    const scaledHeight = image.data.attributes.height * scaleFactor;
+  if (image?.height > 0 && image?.width && image.width / image.height > 1) {
+    const scaleFactor = renderWidth / image.width;
+    const scaledWidth = image.width * scaleFactor;
+    const scaledHeight = image.height * scaleFactor;
     const resizedScaleFactor = renderWidth / scaledHeight;
     const resizedWidth = resizedScaleFactor * scaledWidth;
     previewImageSizes = `${resizedWidth}px`;
@@ -46,14 +42,14 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = ({
     >
       {!isAddAlbum && (
         <>
-          {image?.data && (
+          {image && (
             <StrapiImage
-              img={image?.data}
+              img={image}
               className={styles.image}
               sizes={previewImageSizes}
             />
           )}
-          {!image?.data && (
+          {!image && (
             <div className={`${styles.image} ${styles.addAlbum}`}>
               <FontAwesomeIcon icon={faImage} className={styles.icon} />
             </div>

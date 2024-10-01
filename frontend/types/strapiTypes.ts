@@ -1,29 +1,24 @@
 export interface AlbumType {
   id: number;
-  attributes: {
-    createdAt: string;
-    date: string;
-    images: ImageType[];
-    name: string;
-    publishedAt: string;
-    slug: string;
-    updatedAt: string;
-  };
+  createdAt: string;
+  date: string;
+  images: ImageType[];
+  name: string;
+  publishedAt: string;
+  slug: string;
+  updatedAt: string;
+  documentId: "string";
 }
 
 export interface ImageType {
   id: number;
-  image: {
-    data: {
-      id: number;
-      attributes: StrapiImageAttributes;
-    };
-  };
+  image: StrapiImageAttributes;
   imageTitle: string | null;
   location: string | null;
 }
 
 export interface StrapiImageAttributes {
+  id: number;
   width: number;
   height: number;
   url: string;

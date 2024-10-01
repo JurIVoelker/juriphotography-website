@@ -17,7 +17,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     <div className={`${styles.gallery} ${className || ""}`} {...props}>
       {images.map((image, i) => (
         <StrapiImage
-          img={image.image.data}
+          img={image.image}
           key={i}
           className={styles.image}
           sizes={sizesGallery}

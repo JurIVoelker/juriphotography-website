@@ -4,10 +4,8 @@ import { getAuthHeader } from "./authUtils";
 const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
 
 export function getStrapiImage(image) {
-  if (image?.data?.attributes?.url) {
-    return `${strapiUrl}${image?.data?.attributes?.url}`;
-  } else if (image?.attributes?.url) {
-    return `${strapiUrl}${image?.attributes?.url}`;
+  if (image?.url) {
+    return `${strapiUrl}${image.url}`;
   }
 }
 

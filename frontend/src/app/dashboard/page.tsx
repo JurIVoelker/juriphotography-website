@@ -15,10 +15,9 @@ const dashboard = async () => {
         <h1 className={styles.title}>Homepage Inhalt</h1>
         <div className={styles.albumWrapper}>
           {albumbs.map((album) => {
-            const { images } = album?.attributes || {};
+            const { images } = album || {};
             const previewImage = images?.length
-              ? images.find((image) => image?.image?.data?.attributes?.url) ||
-                images[0]
+              ? images.find((image) => image?.image.url) || images[0]
               : null;
 
             return (
@@ -26,7 +25,7 @@ const dashboard = async () => {
                 albumMeta={album}
                 key={album.id}
                 previewImage={previewImage}
-                href={`/dashboard/bearbeiten/${album.attributes.slug}`}
+                href={`/dashboard/bearbeiten/${album.slug}`}
               />
             );
           })}

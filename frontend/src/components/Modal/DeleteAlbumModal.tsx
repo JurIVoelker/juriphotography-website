@@ -24,10 +24,10 @@ const DeleteAlbumModal: React.FC<DeleteAlbumModalProps> = ({ album }) => {
   const { push } = useRouter();
 
   const handleDeleteAlbum = async () => {
-    const { id } = album;
-    if (!id) return;
+    const { documentId } = album;
+    if (!documentId) return;
     try {
-      await axios.delete(getApiUrl(`/albums/${id}`), getAuthHeader());
+      await axios.delete(getApiUrl(`/albums/${documentId}`), getAuthHeader());
       toastQueue.add({
         text: ALBUM_DELETED_TOAST_MESSAGE,
       });
@@ -49,10 +49,7 @@ const DeleteAlbumModal: React.FC<DeleteAlbumModalProps> = ({ album }) => {
               <Heading slot="title" className={globalStyles.title}>
                 Album löschen
               </Heading>
-              <p>
-                Möchtest du das Album "{album.attributes.name}" wirklich
-                löschen?
-              </p>
+              <p>Möchtest du das Album "{album.name}" wirklich löschen?</p>
               <div className={globalStyles.buttons}>
                 <AriaButton onPress={close} variant="outline">
                   Abbrechen

@@ -1,18 +1,18 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ContentImageText extends Schema.Component {
-  collectionName: 'components_content_image_texts';
+export interface MetaLocation extends Struct.ComponentSchema {
+  collectionName: 'components_meta_locations';
   info: {
-    displayName: 'ImageText';
-    icon: 'picture';
+    displayName: 'location';
+    icon: 'pinMap';
   };
   attributes: {
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    text: Attribute.RichText & Attribute.Required;
+    latitude: Schema.Attribute.String;
+    longitude: Schema.Attribute.String;
   };
 }
 
-export interface ContentImage extends Schema.Component {
+export interface ContentImage extends Struct.ComponentSchema {
   collectionName: 'components_content_images';
   info: {
     displayName: 'image';
@@ -20,30 +20,30 @@ export interface ContentImage extends Schema.Component {
     description: '';
   };
   attributes: {
-    imageTitle: Attribute.String;
-    location: Attribute.Component<'meta.location'>;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imageTitle: Schema.Attribute.String;
+    location: Schema.Attribute.Component<'meta.location', false>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 
-export interface MetaLocation extends Schema.Component {
-  collectionName: 'components_meta_locations';
+export interface ContentImageText extends Struct.ComponentSchema {
+  collectionName: 'components_content_image_texts';
   info: {
-    displayName: 'location';
-    icon: 'pinMap';
+    displayName: 'ImageText';
+    icon: 'picture';
   };
   attributes: {
-    latitude: Attribute.String;
-    longitude: Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text: Schema.Attribute.RichText & Schema.Attribute.Required;
   };
 }
 
-declare module '@strapi/types' {
-  export module Shared {
-    export interface Components {
-      'content.image-text': ContentImageText;
-      'content.image': ContentImage;
+declare module '@strapi/strapi' {
+  export module Public {
+    export interface ComponentSchemas {
       'meta.location': MetaLocation;
+      'content.image': ContentImage;
+      'content.image-text': ContentImageText;
     }
   }
 }
