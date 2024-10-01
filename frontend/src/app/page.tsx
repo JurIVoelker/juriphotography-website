@@ -9,15 +9,21 @@ import ImageTextSection from "../components/ImageTextSection/ImageTextSection";
 import AriaButton from "../components/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { AlbumType } from "../../types/strapiTypes.js";
+import { AlbumType, StrapiImageAttributes } from "../../types/strapiTypes.js";
+
+interface HomePageProps {
+  heroImage: StrapiImageAttributes;
+  profile: { id: number; text: string; image: StrapiImageAttributes };
+}
 
 export default async function Home() {
-  const { heroImage, profile } = await getPageMeta();
   const albums: AlbumType[] = await getAlbums();
+  const pageMeta: HomePageProps = await getPageMeta();
+  const { heroImage, profile } = pageMeta;
   return (
     <>
       <StrapiImage
-        img={heroImage.data}
+        img={heroImage}
         sizes={sizesFillScreen}
         priority
         className={styles.heroImage}
@@ -26,7 +32,7 @@ export default async function Home() {
       <main>
         <div className={styles.profileWrapper}>
           <ImageTextSection
-            src={profile.image.data}
+            src={profile.image}
             className={styles.profile}
             markdownText={profile.text}
           >
@@ -44,9 +50,9 @@ export default async function Home() {
         </div>
         {albums.map((album, i) => (
           <>
-            <h2 className={styles.albumTitle}>{album.attributes.name}</h2>
+            <h2 className={styles.albumTitle}>{album.name}</h2>
             <Gallery
-              images={album.attributes.images}
+              images={album.images}
               className={styles.imageGallery}
               key={i}
             />
@@ -64,12 +70,9 @@ async function getPageMeta() {
       profile: {
         populate: "*",
       },
-      images: {
-        populate: "*",
-      },
     },
   });
-  return res.data.attributes;
+  return res.data;
 }
 
 async function getAlbums() {
@@ -81,5 +84,5 @@ async function getAlbums() {
     },
   });
   const albums: AlbumType[] = res.data;
-  return albums.filter((album) => Boolean(album.attributes.images.length));
+  return albums.filter((album) => Boolean(album.images.length));
 }
