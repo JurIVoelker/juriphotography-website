@@ -8,3 +8,4 @@ export const ALBUM_EDITED_TOAST_MESSAGE =
   "Dein Album wurde erfolgreich bearbeitet";
 export const ALBUM_DELETED_TOAST_MESSAGE =
   "Dein Album wurde erfolgreich gelöscht";
+export const DEFAULT_COOKIE_EXPIRY_DAYS = 30;
