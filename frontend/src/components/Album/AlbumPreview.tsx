@@ -1,10 +1,10 @@
 "use client";
-import { Link } from "react-aria-components";
 import { StrapiImage } from "../StrapiImage/StrapiImage";
 import styles from "./AlbumPreview.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { AlbumType, ImageType } from "../../../types/strapiTypes";
+import Link from "next/link";
 
 interface AlbumPreviewProps {
   albumMeta?: AlbumType;
