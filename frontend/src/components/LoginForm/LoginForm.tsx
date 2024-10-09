@@ -6,7 +6,10 @@ import { AriaTextField } from "../AriaTextField/AriaTextField";
 import AriaButton from "../Button/Button";
 import styles from "./LoginForm.module.scss";
 import { Form } from "react-aria-components";
-import { FIELD_REQUIRED_ERROR_MESSAGE } from "../../constants/constants";
+import {
+  DEFAULT_COOKIE_EXPIRY_DAYS,
+  FIELD_REQUIRED_ERROR_MESSAGE,
+} from "../../constants/constants";
 import axios from "axios";
 import { getApiUrl } from "../../utils/strapiUtils";
 import {
@@ -52,7 +55,7 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
         setLoading(false);
         setErrorMessage("");
         const { jwt } = res.data;
-        setCookie("jwt", jwt);
+        setCookie("jwt", jwt, { expires: DEFAULT_COOKIE_EXPIRY_DAYS });
         window.location.reload();
       })
       .catch((error) => {
