@@ -2,6 +2,8 @@
 
 .link {
   text-decoration: none;
+  width: 144px;
+  height: 144px;
   .image {
     width: 144px;
     height: 144px;
@@ -29,6 +31,8 @@
     text-align: center;
     font-size: 12px;
     margin-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   &[data-focused] {
     outline: none;
