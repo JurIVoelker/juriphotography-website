@@ -22,6 +22,8 @@ export const sizesGallery =
 export const sizesFillScreen =
   "(max-width: 768px) 768px, (max-width: 992px) 992px, (max-width: 1200px) 1200px, 1920px";
 
+export const SIZES_PROFILE = "500px";
+
 export async function uploadImage(strapiRef, file, refId, field) {
   const formData = new FormData();
   formData.append("ref", strapiRef);
