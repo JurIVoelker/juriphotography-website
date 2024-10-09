@@ -3,7 +3,6 @@
 .link {
   text-decoration: none;
   width: 144px;
-  height: 144px;
   .image {
     width: 144px;
     height: 144px;
@@ -32,7 +31,13 @@
     font-size: 12px;
     margin-top: 0.25rem;
     overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden; /* Hide overflowing text */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit to two lines */
+    line-clamp: 2; /* for non-webkit browsers */
+    white-space: normal;
+    text-overflow: ellipsis; /* Add ellipsis */
   }
   &[data-focused] {
     outline: none;
