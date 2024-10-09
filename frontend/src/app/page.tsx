@@ -77,6 +77,7 @@ async function getPageMeta() {
 
 async function getAlbums() {
   const res = await getStrapiData("albums", {
+    sort: "date:desc",
     populate: {
       images: {
         populate: "*",
