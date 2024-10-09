@@ -6,9 +6,6 @@ import { StrapiImage } from "../components/StrapiImage/StrapiImage";
 import { sizesFillScreen } from "../utils/strapiUtils.js";
 import Nav from "../components/Nav/Nav";
 import ImageTextSection from "../components/ImageTextSection/ImageTextSection";
-import AriaButton from "../components/Button/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { AlbumType, StrapiImageAttributes } from "../../types/strapiTypes.js";
 
 interface HomePageProps {
@@ -35,18 +32,7 @@ export default async function Home() {
             src={profile.image}
             className={styles.profile}
             markdownText={profile.text}
-          >
-            <div className={styles.buttons}>
-              <AriaButton variant="solid">
-                Webentwicklung
-                <FontAwesomeIcon icon={faChevronRight} />
-              </AriaButton>
-              <AriaButton variant="solid">
-                Fotografie
-                <FontAwesomeIcon icon={faChevronRight} />
-              </AriaButton>
-            </div>
-          </ImageTextSection>
+          />
         </div>
         {albums.map((album, i) => (
           <>

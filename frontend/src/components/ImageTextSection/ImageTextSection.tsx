@@ -2,8 +2,18 @@
 import styles from "./ImageTextSection.module.scss";
 import { StrapiImage } from "../StrapiImage/StrapiImage";
 import ReactMarkdown from "react-markdown";
+import { ReactNode } from "react";
+import { StrapiImageAttributes } from "../../../types/strapiTypes";
+import { SIZES_PROFILE } from "../../utils/strapiUtils";
 
-const ImageTextSection = ({
+interface ImateTextSectionProps {
+  children?: ReactNode;
+  className?: string;
+  src: StrapiImageAttributes;
+  markdownText: string;
+}
+
+const ImageTextSection: React.FC<ImateTextSectionProps> = ({
   children,
   className,
   src,
@@ -15,7 +25,7 @@ const ImageTextSection = ({
       className={`${styles.wrapper} ${className ? className : ""}`}
       {...props}
     >
-      <StrapiImage img={src} className={styles.image} />
+      <StrapiImage img={src} className={styles.image} sizes={SIZES_PROFILE} />
       <div>
         <ReactMarkdown className={styles.content}>{markdownText}</ReactMarkdown>
         {children}
