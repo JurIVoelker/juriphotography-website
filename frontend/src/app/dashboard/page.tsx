@@ -17,7 +17,7 @@ const dashboard = async () => {
           {albumbs.map((album) => {
             const { images } = album || {};
             const previewImage = images?.length
-              ? images.find((image) => image?.image.url) || images[0]
+              ? images.find((image) => image?.image?.url) || images[0]
               : null;
 
             return (
@@ -40,6 +40,7 @@ export default dashboard;
 
 async function getAlbums() {
   const res = await getStrapiData("/albums", {
+    sort: "date:desc",
     populate: {
       images: {
         populate: "*",

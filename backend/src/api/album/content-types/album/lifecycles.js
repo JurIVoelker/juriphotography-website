@@ -16,14 +16,15 @@ module.exports = {
 
 async function revalidatePaths() {
   const paths = ["/", "/dashboard"];
+  const nextURL = process.env.NEXT_PUBLIC_URL || "http://127.0.0.1:3000";
 
   const revalidationPromises = paths.map((path) =>
-    axios.post(`${process.env.NEXT_PUBLIC_URL}/api/revalidate`, null, {
+    axios.post(`${nextURL}/api/revalidate`, null, {
       params: {
         secret: process.env.REVALIDATION_SECRET,
         path: path,
       },
-    })
+    }),
   );
 
   try {
