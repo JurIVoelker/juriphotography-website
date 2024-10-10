@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ImageType } from "../../../types/strapiTypes";
 import AriaButton from "../Button/Button";
 import styles from "./GalleryItem.module.scss";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { StrapiImage } from "../StrapiImage/StrapiImage";
 
 interface GalleryProps {
   image: ImageType | null;
@@ -27,6 +32,13 @@ export const GalleryItem: React.FC<GalleryProps> = ({
         }}
       >
         <FontAwesomeIcon icon={faXmark} />
+      </AriaButton>
+      <AriaButton className={styles.navigationButtons}>
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </AriaButton>
+      <StrapiImage img={image.image} className={styles.image} />
+      <AriaButton className={styles.navigationButtons}>
+        <FontAwesomeIcon icon={faChevronRight} />
       </AriaButton>
     </div>
   );
