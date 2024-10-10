@@ -1,12 +1,12 @@
 import React from "react";
 import { getStrapiData } from "../utils/apiUtils.js";
 import styles from "./page.module.scss";
-import { Gallery } from "../components/Gallery/Gallery";
 import { StrapiImage } from "../components/StrapiImage/StrapiImage";
 import { sizesFillScreen } from "../utils/strapiUtils.js";
 import Nav from "../components/Nav/Nav";
 import ImageTextSection from "../components/ImageTextSection/ImageTextSection";
 import { AlbumType, StrapiImageAttributes } from "../../types/strapiTypes.js";
+import GalleryCollection from "../components/Gallery/GalleryCollection";
 
 interface HomePageProps {
   heroImage: StrapiImageAttributes;
@@ -34,16 +34,7 @@ export default async function Home() {
             markdownText={profile.text}
           />
         </div>
-        {albums.map((album, i) => (
-          <>
-            <h2 className={styles.albumTitle}>{album.name}</h2>
-            <Gallery
-              images={album.images}
-              className={styles.imageGallery}
-              key={i}
-            />
-          </>
-        ))}
+        <GalleryCollection albums={albums} />
       </main>
     </>
   );

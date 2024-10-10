@@ -11,6 +11,7 @@ interface StrapiImageProps {
   sizes?: string;
   className?: string;
   priority?: boolean;
+  onClick?: () => void;
 }
 
 export const StrapiImage = ({
@@ -18,6 +19,7 @@ export const StrapiImage = ({
   alt = "bild",
   sizes = sizesDefault,
   className,
+  onClick,
   ...props
 }: StrapiImageProps) => {
   const [isLoading, setLoading] = useState(true);
@@ -29,6 +31,7 @@ export const StrapiImage = ({
       className={`${styles.imageContainer} ${
         isLoading ? "" : styles.isLoaded
       } ${className || ""}`}
+      onClick={onClick}
     >
       <Image
         src={getStrapiImage(img)}
