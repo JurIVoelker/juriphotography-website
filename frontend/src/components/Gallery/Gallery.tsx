@@ -1,10 +1,8 @@
 "use client";
-import { useState } from "react";
 import { ImageType } from "../../../types/strapiTypes";
 import { sizesGallery } from "../../utils/strapiUtils";
 import { StrapiImage } from "../StrapiImage/StrapiImage";
 import styles from "./Gallery.module.scss";
-import GalleryItem from "./GalleryItem";
 
 interface GalleryProps {
   images: ImageType[];

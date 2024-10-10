@@ -31,7 +31,7 @@ const GalleryCollection: React.FC<GalleryCollectionProps> = ({
           />
         </>
       ))}
-      <GalleryItem image={selectedImage} />
+      <GalleryItem image={selectedImage} handleSelectImage={setSelectedImage} />
     </div>
   );
 };
