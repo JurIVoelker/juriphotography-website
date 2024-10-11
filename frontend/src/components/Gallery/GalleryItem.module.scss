@@ -9,6 +9,7 @@
   height: 100vh;
   width: 100vw;
   .closeButton {
+    z-index: $z-index-gallery-close-button;
     position: fixed;
     top: 1rem;
     right: 1rem;
@@ -28,6 +29,11 @@
     left: 6rem;
     height: calc(100vh - 4rem);
     width: calc(100vw - 12rem);
+    @include size-m {
+      left: 2rem;
+      width: calc(100vw - 4rem);
+      height: calc(100vh - 7rem);
+    }
     img {
       object-fit: contain;
       width: 100%;
@@ -44,6 +50,16 @@
     justify-content: center;
     background-color: $primary-light;
     left: 1rem;
+    @include size-m {
+      bottom: 1rem;
+      top: auto;
+      left: auto;
+      right: calc(50% + 1rem);
+      &:last-child {
+        right: auto !important;
+        left: calc(50% + 1rem) !important;
+      }
+    }
     &:last-child {
       right: 1rem;
       left: auto;

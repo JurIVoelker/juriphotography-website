@@ -17,9 +17,11 @@ export const Gallery: React.FC<GalleryProps> = ({
   ...props
 }) => {
   const handleOpenGallery = (id) => {
-    const image = images.find((image) => image.image.id === id);
-    if (!image) return;
-    handleSelectImage(image);
+    if (typeof window !== "undefined" && window.innerWidth > 768) {
+      const image = images.find((image) => image.image.id === id);
+      if (!image) return;
+      handleSelectImage(image);
+    }
   };
 
   return (
