@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import styles from "./layout.module.scss";
 import { GlobalToastRegion } from "../components/Toast/GlobalToastRegion";
+import Head from "next/head";
 const font = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,6 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
+      <head>
+        <script
+          defer
+          src="http://umami-ogkgck8skk840sg0wcgkc0sw.194.164.207.106.sslip.io/script.js"
+          data-website-id="223be4f5-b270-4611-9dd5-e218d5bf15b2"
+        />
+      </head>
       <body className={`${font.className} ${styles.wrapper}`}>
         <GlobalToastRegion />
         <div className={styles.container}>{children}</div>
