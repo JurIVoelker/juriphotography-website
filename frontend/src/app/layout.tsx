@@ -20,7 +20,7 @@ export default function RootLayout({
       <head>
         <script
           defer
-          src="http://umami-ogkgck8skk840sg0wcgkc0sw.194.164.207.106.sslip.io/script.js"
+          src="https://umami.jurivoelker.de/script.js"
           data-website-id="223be4f5-b270-4611-9dd5-e218d5bf15b2"
         />
       </head>
